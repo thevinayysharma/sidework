@@ -1,0 +1,125 @@
+.user-box {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 30px;
+  margin-bottom: 50px;
+
+}
+
+.user-info {
+  padding: 10px;
+  border: 0.2px solid rgb(243, 238, 238);
+
+}
+
+.user-info h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.user-info p {
+  margin-bottom: 5px;
+}
+
+.sales-info p {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.order-box {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.order-actions button {
+  margin-right: 10px;
+}
+
+
+.sales-info {
+  background-color: rgb(111, 196, 245);
+  padding: 3px;
+  width: 180px;
+  border-radius: 3px;
+}
+
+.current-orders {
+  border: 0.2px solid rgb(243, 238, 238);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.order-toggle {
+  margin-bottom: 10px;
+}
+
+.order-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.order-box p {
+  margin: 5px 0;
+}
+
+.order-box button {
+  margin-right: 10px;
+}
+
+.order-actions button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+rder-actions button:last-child {
+  background-color: #28a745;
+}
+
+.order-actions button:hover {
+  opacity: 0.8;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .user-box {
+    padding: 10px;
+  }
+
+  .current-orders {
+    padding: 10px;
+  }
+
+  .order-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .order-box p {
+    margin: 10px 0;
+  }
+
+  .order-actions {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .order-actions button {
+    margin-bottom: 10px;
+  }
+}
