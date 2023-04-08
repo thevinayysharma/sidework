@@ -110,7 +110,7 @@ export default function PanForm() {
 
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    // console.log(values);
+    console.log(values);
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
@@ -118,14 +118,13 @@ export default function PanForm() {
     formData.append("clientId", clientId);
     formData.append("amount", 200);
     formData.append("work", "Apply New Pan");
-    // console.log(formData);
     // formData.append("paid", false); sec issue!
     setSubmitting(false);
     // console.log("refdata: ", refData);
     // navigate('/payment', { state: refData });
 
     try {
-      const response = await axios.post("http://localhost:5000/create-order", formData); // Create order on backend
+      const response = await axios.post("/orders/create-order", formData); // Create order on backend
        
       if (response.status >= 200 && response.status < 300) {
         //TODO: Send form data updated in db from backend

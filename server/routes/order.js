@@ -1,43 +1,19 @@
 import express from "express";
 import multer from "multer";
 import { GridFsStorage } from "multer-gridfs-storage";
-// import dbConfig from "../config/db.js";
-// const MongoClient = require("mongodb").MongoClient;
 import { MongoClient } from "mongodb";
 
+const url = process.env.MONGO_URL || "mongodb://localhost:27017/computerzonedb";
 const router = express.Router();
 
 // DATA IMPORTS
 import Order from "../models/Order.js";
 
 // Configure multer to store files in memory
-const storage = multer.memoryStorage();
+// const storage = multer.memoryStorage();
 
-//filter
-const filesFilter = (req, file, cb) => {
-  if (!file.originalname.match(/\.jpg|jpeg|png|gif|pdf)$/i)) {
-    return cb(
-      new Error("Only image &pdf files (jpg, jpeg, png, gif, pdf) are allowed!"),
-      false
-    );
-  } else {
-    cb(null, true);
-  }
-};
-
-const upload = multer({ storage: storage, fileFilter: filesFilter,  limits: {
-  fileSize: 5 * 1024 * 1024 // 5MB in bytes
-}}).array(
-  "files",
-  3
-);
-
-// Connect to MongoDB and create GridFSBucket
-const url =  "mongodb://localhost:5000/";
-const client = new MongoClient(url, { 
-  useUnifiedTopology: true ,
-});
-
+ 
+const client = new MongoClient(url);
 client.connect((err) => {
   if (err) {
     console.log(err.message);
@@ -46,8 +22,9 @@ client.connect((err) => {
 });
 
 
+//Create a storage object with a given configuration
 const bucket = new GridFsStorage({
-  client: client,
+  url: url,
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     const match = ["image/png", "image/jpeg", "image/jpg", "application/pdf"];
@@ -62,6 +39,14 @@ const bucket = new GridFsStorage({
     };
   },
 });
+
+
+const upload = multer({ storage: bucket,  limits: {
+  fileSize: 5 * 1024 * 1024 // 5MB in bytes
+}}).array(
+  "files",
+  3
+);
 
 //creating new_order
 router.post("/orders/create-order", upload, (req, res) => {
