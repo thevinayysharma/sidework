@@ -8,7 +8,7 @@ function MidSection() {
         <h1>Built it anything that you need, here's why you need DocsZone</h1>
         </div>
       
-        <div class="card">
+        <div className="card">
           <div className="card1">
             <h2 className="card__title">1. Get set Write?</h2>
             <p className="card__text">
