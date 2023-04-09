@@ -6,28 +6,29 @@ import { MongoClient } from "mongodb";
 
 //instantiate razorpay
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_SECRET,
+  key_id: "rzp_test_JordB2SkkjmaW5",
+  key_secret: "wLk1LXXBO6x85FvjgSiU0gU9",
 });
 
-router.post("/payment", async (req, res) => {
-  console.log(req.body);
-  const { amount, clientId } = req.body;
+router.post("/razorpay", async (req, res) => {
+  const { amount } = req.body;
+  // const amount = 40000;
+  const currency = 'INR';
+ 
 
   const options = {
-    amount: (amount * 100).toString(),
-    currency: "INR",
+    amount: amount * 100,
+    currency,
     receipt: "receipt" + Math.floor(Math.random() * 1000),
-    payment_capture: 1,
+    payment_capture:1,
   };
 
   try {
     const response = await razorpay.orders.create(options);
-    const orderId = response.id;
+    console.log(response);
     res.json({
-      orderId,
-      clientId,
-      amount,
+      orderId: response.id,
+      amount: response.amount,
     });
   } catch (error) {
     console.log(error);
