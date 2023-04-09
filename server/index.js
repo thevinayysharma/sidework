@@ -10,7 +10,7 @@ import { GridFsStorage } from "multer-gridfs-storage";
 import { MongoClient } from "mongodb";
 import orderRoutes from "./routes/order.js";
 // import uploadRoutes from "./routes/upload.js";
-// import paymentRoutes from "./routes/payment.js";
+import paymentRoutes from "./routes/payment.js";
 // import path from "path";
 
 
@@ -29,7 +29,7 @@ app.use(cors());
 /* ROUTES */
 app.use("/order", orderRoutes);
 // app.use("/upload", uploadRoutes);
-// app.use("/payment", paymentRoutes);
+app.use("/payment", paymentRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000; //9000 backup port
