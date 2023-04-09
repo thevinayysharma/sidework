@@ -3,53 +3,61 @@ import multer from "multer";
 import { GridFsStorage } from "multer-gridfs-storage";
 import { MongoClient } from "mongodb";
 
-const url = process.env.MONGO_URL || "mongodb://localhost:27017/computerzonedb";
+// const url =  "mongodb://127.0.0.1:27017/computerzonedb";
 const router = express.Router();
 
 // DATA IMPORTS
 import Order from "../models/Order.js";
 
-// Configure multer to store files in memory
-// const storage = multer.memoryStorage();
-
  
-const client = new MongoClient(url);
-client.connect((err) => {
-  if (err) {
-    console.log(err.message);
-    process.exit(1);
-  }
-});
+// const client = new MongoClient(url);
+// client.connect((err) => {
+//   if (err) {
+//     console.log(err.message);
+//      process.exit(1);
+//   }
+// });
 
 
 //Create a storage object with a given configuration
-const bucket = new GridFsStorage({
-  url: url,
-  options: { useNewUrlParser: true, useUnifiedTopology: true },
-  file: (req, file) => {
-    const match = ["image/png", "image/jpeg", "image/jpg", "application/pdf"];
+// const bucket = new GridFsStorage({
+//   url: url,
+//   options: { useNewUrlParser: true, useUnifiedTopology: true },
+//   file: (req, file) => {
+//     const match = ["image/png", "image/jpeg", "image/jpg", "application/pdf"];
 
-    if (match.indexOf(file.mimetype) === -1) {
-      const filename = `${Date.now()}-docszone-${file.originalname}`;
-      return filename;
-    }
+//     if (match.indexOf(file.mimetype) === -1) {
+//       const filename = `${Date.now()}-docszone-${file.originalname}`;
+//       return filename;
+//     }
 
-    return {
-      filename: file.originalname,
-    };
+//     return {
+//       filename: file.originalname,
+//     };
+//   },
+// });
+
+
+// const upload = multer({ storage: bucket,  limits: {
+//   fileSize: 5 * 1024 * 1024 // 5MB in bytes
+// }}).array(
+//   "files",
+//   3
+// );
+
+// SET STORAGE
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads')
   },
-});
-
-
-const upload = multer({ storage: bucket,  limits: {
-  fileSize: 5 * 1024 * 1024 // 5MB in bytes
-}}).array(
-  "files",
-  3
-);
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+var upload = multer({ storage: storage })
 
 //creating new_order
-router.post("/orders/create-order", upload, (req, res) => {
+router.post("/orders/create-order", upload.array('files',2), (req, res) => {
   const order = new Order({
     customerId: req.body.clientId,
     firstName: req.body.firstname,
@@ -60,25 +68,24 @@ router.post("/orders/create-order", upload, (req, res) => {
     dob: req.body.dob,
     gender: req.body.gender,
     email: req.body.email,
-    phone: req.body.phone,
     files: req?.files.map((file) => file.id),
+    phone: req.body.phone,
     amount: req.body.amount,
     work: req.body.work,
   });
-
   order.paymentStatus = "pending";
   order.paymentAmount = "";
 
   // Store the file in GridFSBucket
-  req.files.forEach((file) => {
-    const readableStream = new Readable();
-    readableStream.push(file.buffer);
-    readableStream.push(null);
-    const uploadStream = bucket.openUploadStream(file.originalname);
-    const id = uploadStream.id;
-    readableStream.pipe(uploadStream);
-    order.files.push(id);
-  });
+  // req.files.forEach((file) => {
+  //   const readableStream = new Readable();
+  //   readableStream.push(file.buffer);
+  //   readableStream.push(null);
+  //   const uploadStream = bucket.openUploadStream(file.originalname);
+  //   const id = uploadStream.id;
+  //   readableStream.pipe(uploadStream);
+  //   order.files.push(id);
+  // });
 
   order
     .save()
