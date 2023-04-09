@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import "./payment.css";
+import payimg from "../../assets/scatterred-forcefields.png";
+import image from "../../assets/docsspacelogo.png";
 
 function Payment() {
   const { state } = useLocation();
@@ -16,23 +18,21 @@ function Payment() {
       return;
     }
 
-   // const response = await fetch('http://localhost:5001/razorpay', { method: 'POST' });
     const response = await fetch("http://localhost:5001/razorpay", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
-   
+
     if (!response) {
       alert("Server error. Are you online?");
       return;
     }
- 
-   
+
     var options = {
       key: "rzp_test_JordB2SkkjmaW5",
-      name: "web and Machines",
+      name: "Docs space",
       amount: state.amount,
       currency: response.currency,
       order_id: response.orderId,
@@ -92,10 +92,18 @@ function Payment() {
 
   return (
     <div className="payment">
-      <p>Please Pay for succesfull execution</p>
-      <button className="payment-link" onClick={displayRazorpay}>
-        Pay
-      </button>
+      <img className="imgg" src={image} />
+      <img className="img" src={payimg} alt="bg" />
+      <div className="payment-content">
+        <p>
+          Thank you for choosing our service! To complete your purchase, please
+          make the payment below. We appreciate your business and look forward
+          to serving you again in the future.
+        </p>
+        <button className="payment-link" onClick={displayRazorpay}>
+          Pay Now
+        </button>
+      </div>
     </div>
   );
 }

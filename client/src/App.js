@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes,  useLocation } from "react-router-dom";
 import HomePage from "./pages/homepage/homepage";
 import Admin from "./pages/admin/admin";
 import PanForm from "./pages/formspage/panform";
@@ -12,6 +12,7 @@ import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
 import ContactUs from "./pages/contactpage/contact";
 
+const hideFooter = window.location.pathname === "/payment";
 function App() {
   return (
     <BrowserRouter>
@@ -29,7 +30,7 @@ function App() {
           {/* <Route path="/register" element={<Register />} /> */}
           <Route component={<HomePage />} />
         </Routes>
-        <Footer />
+        {!hideFooter && <Footer />}
       </div>
     </BrowserRouter>
   );
