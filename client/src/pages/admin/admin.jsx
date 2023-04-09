@@ -11,11 +11,11 @@ const Admin = () => {
     const fetchData = async () => {
       try {
         const salesResponse = await axios.get(
-          "http://localhost:5000/orders/sales"
+          "/orders/sales"
         );
         setTotalSales(salesResponse.data.totalSales);
 
-        const ordersResponse = await axios.get("http://localhost:5000/orders");
+        const ordersResponse = await axios.get("/orders");
         setCurrentOrders(ordersResponse.data.currentOrders);
       } catch (error) {
         console.log(error);
@@ -46,9 +46,9 @@ const Admin = () => {
 
   const deleteUser = async (clientId) => {
     try {
-      await axios.delete(`http://localhost:5000/orders/${clientId}`);
+      await axios.delete(`/orders/${clientId}`);
       // Refresh the orders list after deleting the user
-      const ordersResponse = await axios.get("http://localhost:5000/orders");
+      const ordersResponse = await axios.get("/orders");
       setCurrentOrders(ordersResponse.data.currentOrders);
     } catch (error) {
       console.log(error);
@@ -67,7 +67,6 @@ const Admin = () => {
         <p>Total Sales: INR {totalSales}</p>
       </div>
       <div className="current-orders">
-        <h4>Current Orders</h4>
         <div className="order-toggle">
           <button onClick={toggleOrders}>
             {showOrders ? "Hide Orders" : "Show Orders"}
