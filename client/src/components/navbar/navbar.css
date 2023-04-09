@@ -10,13 +10,13 @@
       color: #333;
     }
     
-    .logo {
-      margin-right:120px;
+    .navbarlogo {
+      margin-right:180px;
     }
     
-    .logo img {
+    .navbarlogo img {
       height: 40px;
-      width: 120px;
+      width: 80px;
     }
   
     .navitems {
@@ -108,7 +108,7 @@
           padding: 10px 0;
         }
       
-        .logo {
+        .navbarlogo {
           display: none;
         }
       
@@ -130,6 +130,7 @@
           transform: none;
           margin-left: 15px;
           margin-top: 10px;
+          display: inline-block;
         }
       }
       

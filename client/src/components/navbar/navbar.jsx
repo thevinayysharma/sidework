@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import docsimg from "../../assets/docsspacelogo.png";
 
 export default function Navbar() {
   const [showAadharMenu, setShowAadharMenu] = useState(false);
@@ -21,8 +22,8 @@ export default function Navbar() {
 
   return (
     <div className="navmenu">
-       <div className="logo">
-        <img src="https://picsum.photos/200/300" alt="Logo" />
+       <div className="navbarlogo">
+        <img src={docsimg} alt="Logo" />
       </div>
       <div className="navitems">
         <li className="anchor" href="#">

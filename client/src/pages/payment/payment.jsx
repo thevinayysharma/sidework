@@ -5,7 +5,7 @@ import "./payment.css";
 
 function Payment() {
   const { state } = useLocation();
-  const amount = 200000;
+  const amount = 20000;
   const clientId = "sddfd2";
   // const clientId = state?.clientId;
   // const amount = state?.amount;
