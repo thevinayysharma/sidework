@@ -1,73 +1,50 @@
-POST http://localhost:5001/orders
-Content-Type: application/json
-{
-    "firstName": "testvinay-1",
-    "lastName": "sharma",
-    "middleName": "kr",
-    "age": "24",
-    "comments": "",
-    "dob": "23",
-    "gender": "M",
-    "email": "test@email.com",
-    "phone": "9999900000",    
-    "orderId": "abc856",
-}
+## Hello!
 
-//connecting backend
+### run client
+
+```
+yarn start
+```
+
+### run server
+
+```
+yarn run dev
+```
+
+
+## Issue in Payment
+
+1. Client side Issue : need help.
+- Goto: `http://localhost:3000/payment` on browser.
+- Click `pay` button
+- check console for below error:/
+
+```
+Response {type: 'cors', url: 'http://localhost:5001/razorpay', redirected: false, status: 404, ok: false, …}
+```
+Possible sol:
+- axios urls
+- proxy errors
+
+2. Related code_files for issues
+
+- Code for client:
+`src/pages/payment/payment.jsx` for the above file
+
+- code for server
+`routes/payment.js`
+
+
+<!-- //connecting backend
 https://codepen.io/soumitraghosh99/pen/xxameKJ?editors=1100  ''f f
 
 
 //react js stying guide airbnb
-
 simple file upload: https://codesandbox.io/s/lkkjpr5r7?file=/index.js
-
 
 //multiple files
 //REST formik form button: https://reacthustle.com/blog/tutorial-how-to-reset-formik-form
 
-
-
 //multer multi file upload: https://www.bezkoder.com/node-js-upload-store-images-mongodb/
-<img src={process.env.PUBLIC_URL + '/logo.png'} alt="Logo" />  for public assets storing small bundle size
-
-
-
-
-       // Redirect to Razorpay checkout page
-        const paymentUrl = await axios.post("http://localhost:5000/payment/");; // get the payment URL from the backend //for the given orderID
-        setPaymentUrl(paymentUrl);
-        window.location.href = paymentUrl; // redirect the user to the payment URL
-
-
-
-
-
-
-/* eslint-disable no-undef */
-function search(query, cb) {
-    return fetch(`orders?q=${query}`, {
-      accept: "application/json"
-    })
-      .then(checkStatus)
-      .then(parseJSON)
-      .then(cb);
-  }
-  
-  function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    }
-    const error = new Error(`HTTP Error ${response.statusText}`);
-    error.status = response.statusText;
-    error.response = response;
-    console.log(error); // eslint-disable-line no-console
-    throw error;
-  }
-  
-  function parseJSON(response) {
-    return response.json();
-  }
-  
-  const Client = { search };
-  export default Client;
-
+<img src={process.env.PUBLIC_URL + '/logo.png'} alt="Logo" />  for public assets storing small bundle size -->
