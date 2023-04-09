@@ -121,22 +121,22 @@ export default function PanForm() {
     // formData.append("paid", false); sec issue!
     setSubmitting(false);
     // console.log("refdata: ", refData);
-    // navigate('/payment', { state: refData });
+    navigate('/payment', { state: refData });
 
-    try {
-      const response = await axios.post("/orders/create-order", formData); // Create order on backend
+    // try {
+    //   const response = await axios.post("/orders/create-order", formData); // Create order on backend
        
-      if (response.status >= 200 && response.status < 300) {
-        //TODO: Send form data updated in db from backend
-        const data = await response.json();
-        console.log(data); // Handle response from backend
-        setdataSubmitted(!dataSubmitted);
-        // console.log(refData);
-        navigate('/payment', { state: refData });
-      }
-    } catch (error) {
-      console.error(error); // handle error
-    }
+    //   if (response.status >= 200 && response.status < 300) {
+    //     //TODO: Send form data updated in db from backend
+    //     const data = await response.json();
+    //     console.log(data); // Handle response from backend
+    //     setdataSubmitted(!dataSubmitted);
+    //     // console.log(refData);
+    //     navigate('/payment', { state: refData });
+    //   }
+    // } catch (error) {
+    //   console.error(error); // handle error
+    // }
     // resetForm({ values: "" });
   };
 
