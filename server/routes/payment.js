@@ -11,13 +11,10 @@ const razorpay = new Razorpay({
 });
 
 router.post("/razorpay", async (req, res) => {
-  const { amount } = req.body;
-  // const amount = 40000;
   const currency = 'INR';
  
 
   const options = {
-    amount: amount * 100,
     currency,
     receipt: "receipt" + Math.floor(Math.random() * 1000),
     payment_capture:1,
@@ -25,10 +22,8 @@ router.post("/razorpay", async (req, res) => {
 
   try {
     const response = await razorpay.orders.create(options);
-    console.log(response);
     res.json({
       orderId: response.id,
-      amount: response.amount,
     });
   } catch (error) {
     console.log(error);

@@ -5,10 +5,8 @@ import "./payment.css";
 
 function Payment() {
   const { state } = useLocation();
-  const amount = 20000;
-  const clientId = "sddfd2";
-  // const clientId = state?.clientId;
-  // const amount = state?.amount;
+  const clientId = state?.clientId;
+  const amount = state?.amount;
 
   //gateway
   async function displayRazorpay() {
@@ -24,19 +22,18 @@ function Payment() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ amount }),
     });
-    console.log(response);
    
     if (!response) {
       alert("Server error. Are you online?");
       return;
     }
-
+ 
+   
     var options = {
       key: "rzp_test_JordB2SkkjmaW5",
       name: "web and Machines",
-      amount: response.amount,
+      amount: state.amount,
       currency: response.currency,
       order_id: response.orderId,
       description: "Test Transaction",
