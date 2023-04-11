@@ -54,11 +54,6 @@ export default function PanForm() {
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
     middleName: Yup.string().notRequired(),
-    age: Yup.number()
-      .typeError("Invalid age")
-      .required("Required")
-      .positive("Invalid age")
-      .integer("Invalid age"),
     dob: Yup.date().required("please enter your dob"),
     gender: Yup.string()
       .oneOf(["male", "female"])
@@ -103,6 +98,7 @@ export default function PanForm() {
     comments: Yup.string().notRequired(),
   });
 
+
   useEffect(() => {
     const orderId = generateOrderId();
     setclientId(orderId);
@@ -117,26 +113,36 @@ export default function PanForm() {
     }
     formData.append("clientId", clientId);
     formData.append("amount", 200);
-    formData.append("work", "Apply New Pan");
-    // formData.append("paid", false); sec issue!
-    setSubmitting(false);
-    // console.log("refdata: ", refData);
-    navigate('/payment', { state: refData });
+    formData.append("work", "Apply New Pan");  
+     // formData.append("paid", false); sec issue!
 
-    // try {
-    //   const response = await axios.post("/orders/create-order", formData); // Create order on backend
-       
-    //   if (response.status >= 200 && response.status < 300) {
-    //     //TODO: Send form data updated in db from backend
-    //     const data = await response.json();
-    //     console.log(data); // Handle response from backend
-    //     setdataSubmitted(!dataSubmitted);
-    //     // console.log(refData);
-    //     navigate('/payment', { state: refData });
-    //   }
-    // } catch (error) {
-    //   console.error(error); // handle error
-    // }
+    setSubmitting(false);
+    //adding files
+    for (let key in values) {
+      if (key === 'files') {
+        // Append each selected file as a separate part
+        const fileList = values[key];
+        for (let i = 0; i < fileList.length; i++) {
+          formData.append('files', fileList[i]);
+        }
+      } 
+    }
+    //give relevant headers and check for backend work
+    try {
+      const response = await axios.post("/create", formData); 
+      // const response = await fetch("/create", {
+      //   method: "POST",
+      // });
+      if (response.status >= 200 && response.status < 300) {
+        const data = await response.json();
+        console.log(data); 
+        setdataSubmitted(!dataSubmitted);
+        // console.log(refData);
+        navigate('/payment', { state: refData });
+      }
+    } catch (error) {
+      console.error(error); // handle error
+    }
     // resetForm({ values: "" });
   };
 
@@ -189,11 +195,6 @@ export default function PanForm() {
                   <label htmlFor="middleName">Middle Name</label>
                   <Field name="middleName" type="text" />
                   <ErrorMessage name="middleName" />
-                </div>
-                <div>
-                  <label htmlFor="age">Age</label>
-                  <Field name="age" type="number" />
-                  <ErrorMessage name="age" />
                 </div>
                 <div>
                   <label htmlFor="dob">Date of Birth</label>
