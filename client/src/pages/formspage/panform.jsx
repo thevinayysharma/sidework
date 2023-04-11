@@ -1,6 +1,6 @@
 import "./panform.css";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -17,9 +17,7 @@ const generateOrderId = () => {
     clientId += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return clientId;
-}; 
-
-
+};
 
 // Regular expression for Indian phone number validation
 const phoneRegExp = /^[6-9]\d{9}$/;
@@ -38,16 +36,13 @@ const initialValues = {
   files: [],
 };
 
-
-
 export default function PanForm() {
   const [clientId, setclientId] = useState(null);
-  // const [paymentUrl, setPaymentUrl] = useState(null);
   const [dataSubmitted, setdataSubmitted] = useState(false);
 
   const fileref = useRef(null);
   const navigate = useNavigate();
-  const refData = { amount: 200 , clientId: clientId };
+  const refData = { amount: 200, clientId: clientId };
 
   //yup validation
   const validationSchema = Yup.object().shape({
@@ -98,55 +93,40 @@ export default function PanForm() {
     comments: Yup.string().notRequired(),
   });
 
-
   useEffect(() => {
     const orderId = generateOrderId();
     setclientId(orderId);
   }, []);
 
-
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(values);
     const formData = new FormData();
-    for (let value in values) {
-      formData.append(value, values[value]);
+    for (let key in values) {
+      const fileList = values[key];
+      for (let i = 0; i < fileList.length; i++) {
+        formData.append("files", fileList[i]);
+      }
+      formData.append(key, values[key]);
     }
     formData.append("clientId", clientId);
     formData.append("amount", 200);
-    formData.append("work", "Apply New Pan");  
-     // formData.append("paid", false); sec issue!
-
+    formData.append("work", "Apply New Pan");
+    console.log(values);
     setSubmitting(false);
-    //adding files
-    for (let key in values) {
-      if (key === 'files') {
-        // Append each selected file as a separate part
-        const fileList = values[key];
-        for (let i = 0; i < fileList.length; i++) {
-          formData.append('files', fileList[i]);
-        }
-      } 
-    }
+
     //give relevant headers and check for backend work
     try {
-      const response = await axios.post("/create", formData); 
-      // const response = await fetch("/create", {
-      //   method: "POST",
-      // });
+      const response = await axios.post("/orders/create", formData);
       if (response.status >= 200 && response.status < 300) {
-        const data = await response.json();
-        console.log(data); 
+        //console.log(JSON.stringify(response));
         setdataSubmitted(!dataSubmitted);
-        // console.log(refData);
-        navigate('/payment', { state: refData });
+        navigate("/payment", { state: refData });
       }
     } catch (error) {
+      alert(error);
       console.error(error); // handle error
     }
     // resetForm({ values: "" });
   };
-
-
 
   return (
     <div className="panContainer">
@@ -159,8 +139,9 @@ export default function PanForm() {
       </p>
       {dataSubmitted ? (
         <p>
-          Data Submitted <b>Successfully</b>You are being redirected to the payment page. If you are not
-          redirected in a few seconds, please click the button below:
+          Data Submitted <b>Successfully</b>You are being redirected to the
+          payment page. If you are not redirected in a few seconds, please click
+          the button below:
         </p>
       ) : (
         <div className="formscss">

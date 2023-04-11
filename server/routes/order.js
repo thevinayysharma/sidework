@@ -1,107 +1,128 @@
 import express from "express";
 import multer from "multer";
 import { GridFsStorage } from "multer-gridfs-storage";
-import { MongoClient } from "mongodb";
-
-// const url =  "mongodb://127.0.0.1:27017/computerzonedb";
 const router = express.Router();
-
-// DATA IMPORTS
-import Order from "../models/Order.js";
-
- 
-// const client = new MongoClient(url);
-// client.connect((err) => {
-//   if (err) {
-//     console.log(err.message);
-//      process.exit(1);
-//   }
-// });
+import Order from "../models/order.js";
+// import { MongoClient } from "mongodb";
+import Grid from "gridfs-stream";
+import crypto from 'crypto';
+import mongoose from "mongoose";
 
 
-//Create a storage object with a given configuration
-// const bucket = new GridFsStorage({
-//   url: url,
-//   options: { useNewUrlParser: true, useUnifiedTopology: true },
-//   file: (req, file) => {
-//     const match = ["image/png", "image/jpeg", "image/jpg", "application/pdf"];
 
-//     if (match.indexOf(file.mimetype) === -1) {
-//       const filename = `${Date.now()}-docszone-${file.originalname}`;
-//       return filename;
-//     }
-
-//     return {
-//       filename: file.originalname,
-//     };
-//   },
-// });
+//const URL = "mongodb://0.0.0.0:27017/computerzonedb";
+//const client = await MongoClient.connect('mongodb://0.0.0.0:27017/computerzonedb');
 
 
-// const upload = multer({ storage: bucket,  limits: {
-//   fileSize: 5 * 1024 * 1024 // 5MB in bytes
-// }}).array(
-//   "files",
-//   3
-// );
+const mongoURI = 'mongodb://0.0.0.0:27017/computerzonedb';
+const conn = mongoose.createConnection(mongoURI)
+let gfs;
 
-// SET STORAGE
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
+conn.once('open', () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('orders');
+});
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "application/pdf" ||
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true); // Accept file
+  } else {
+    cb(
+      new Error("Only PDF, PNG, JPG, and JPEG file types are allowed."),
+      false
+    ); // Reject file
   }
-})
-var upload = multer({ storage: storage })
+};
 
-//creating new_order
-router.post("/orders/create-order", upload.array('files',2), (req, res) => {
+// Create storage engine
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'orders'
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+const upload = multer({ storage });
+
+router.post("/orders/create", upload.array('files',3), async (req, res) => {
+  let files = [];
+  if (req.files && req.files.length > 0) {
+    files = req.files.map((file) => ({
+      filename: file.filename,
+      contentType: file.contentType,
+    }));
+  }
   const order = new Order({
-    customerId: req.body.clientId,
-    firstName: req.body.firstname,
-    lastName: req.body.lastname,
+    clientId: req.body.clientId,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     middleName: req.body?.middleName ?? "",
-    age: req.body.age,
     comments: req.body?.comments ?? "",
     dob: req.body.dob,
     gender: req.body.gender,
     email: req.body.email,
-    files: req?.files.map((file) => file.id),
+    clientId: req.body.clientId,
     phone: req.body.phone,
     amount: req.body.amount,
     work: req.body.work,
+    files: files 
   });
   order.paymentStatus = "pending";
   order.paymentAmount = "";
 
-  // Store the file in GridFSBucket
-  // req.files.forEach((file) => {
-  //   const readableStream = new Readable();
-  //   readableStream.push(file.buffer);
-  //   readableStream.push(null);
-  //   const uploadStream = bucket.openUploadStream(file.originalname);
-  //   const id = uploadStream.id;
-  //   readableStream.pipe(uploadStream);
-  //   order.files.push(id);
-  // });
-
   order
     .save()
     .then((savedOrder) => {
-      res.json(savedOrder);
+      console.log(savedOrder);
+      res.status(200).json({
+        message: "Details submitted successfully",
+      });;
     })
     .catch((err) => {
       if (err instanceof multer.MulterError) {
         // A Multer error occurred when uploading.
         console.log("Multer_Error_occured:", err);
       } else if (err) {
-        // An unknown error occurred when uploading.
-        console.log(err.message);
+        res.status(500).json({
+          error: error
+        });
+        console.log(err.message); // An unknown error occurred when uploading.
       }
     });
 });
+
+
+
+// Initialize Multer middleware with file filter
+// const upload = multer({
+//   storage,
+//   fileFilter,
+//   limits: {
+//     fileSize: 5 * 1024 * 1024,
+//   }
+// }).array('files',5);
+
+
+
+
+
 
 // Get single order
 router.get("/orders/:customerId", (req, res) => {
@@ -119,16 +140,13 @@ router.get("/orders/:customerId", (req, res) => {
 //get all orders
 router.get("/orders", async (req, res) => {
   try {
-    const orders = await Order.find()
-      .populate("customerId")
-      .populate("files");
+    const orders = await Order.find().populate("customerId").populate("files");
     res.json(orders);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
-
 
 // Delete order by ID
 router.delete("/orders/:clientId", async (req, res) => {
@@ -141,14 +159,12 @@ router.delete("/orders/:clientId", async (req, res) => {
     }
 
     const paymentAmount = order.paymentAmount; // store payment amount
-     // Delete the order by customerId
-     await Order.findOneAndDelete({ customerId });
+    // Delete the order by customerId
+    await Order.findOneAndDelete({ customerId });
     // Update total sales by subtracting the payment amount of the deleted order
     await Sales.updateOne({}, { $inc: { totalSales: -paymentAmount } });
 
     res.json({ message: "Order and its related details deleted successfully" });
-    
-  
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ message: "Internal server error" });
@@ -156,7 +172,7 @@ router.delete("/orders/:clientId", async (req, res) => {
 });
 
 // Get total sales
-router.get("/orders/sales", async (req, res) =>   {
+router.get("/orders/sales", async (req, res) => {
   try {
     const result = await orders.aggregate([
       { $match: { paymentStatus: true } },

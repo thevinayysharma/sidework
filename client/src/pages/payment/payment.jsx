@@ -51,6 +51,7 @@ function Payment() {
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_order_id: response.razorpay_order_id,
           razorpay_signature: response.razorpay_signature,
+          clientId: state.clientId,
         };
 
         const result = await axios.post(

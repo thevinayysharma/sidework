@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 
 const formSchema = new mongoose.Schema(
   {
-    customerId: {
-      type: mongoose.Schema.Types.ObjectId,
+    clientId: {
+      type: String,
       required: true,
+      unique: true,
     },
     firstName: {
       type: String,
@@ -40,19 +41,17 @@ const formSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    files: {
-      filename: String,
-      contentType: String,
-    },
+    files: [
+      {
+        filename: String,
+        contentType: String,
+      }
+    ],
     amount: {
       type: Number,
       required: true,
     },
     work: {
-      type: String,
-      required: true,
-    },
-    clientId: {
       type: String,
       required: true,
     },
