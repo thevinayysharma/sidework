@@ -11,10 +11,10 @@ import { MongoClient } from "mongodb";
 //import orderRoutes from "./routes/order.js";
 import paymentRoutes from "./routes/payment.js";
 import path from "path";
-import Grid from 'gridfs-stream';
-import methodOverride from 'method-override';
-import crypto from 'crypto';
-import Order from "./models/order.js"
+import Grid from "gridfs-stream";
+import methodOverride from "method-override";
+import crypto from "crypto";
+import Order from "./models/order.js";
 
 /* CONFIGURATION */
 dotenv.config();
@@ -26,7 +26,7 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 
 /* ROUTES */
 //app.use("/order", orderRoutes);
@@ -53,15 +53,16 @@ mongoose
   .catch((error) => console.log(`${error} did not connect`));
 
 /* MOGOOSE CONNECTION SETUP */
-const mongoURI = 'mongodb://0.0.0.0:27017/computerzonedb';
-const conn = mongoose.createConnection(mongoURI)
+const mongoURI = "mongodb://0.0.0.0:27017/computerzonedb";
+const conn = mongoose.createConnection(mongoURI);
 let gfs;
 
-conn.once('open', () => {
+conn.once("open", () => {
   // Init stream
   gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('orders');
+  gfs.collection("orders");
 });
+
 
 //Create storage engine
 const storage = new GridFsStorage({
@@ -72,17 +73,16 @@ const storage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
-        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const filename = buf.toString("hex") + path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
-          bucketName: 'orders'
+          bucketName: "orders",
         };
         resolve(fileInfo);
       });
     });
-  }
+  },
 });
-
 
 const fileFilter = (req, file, cb) => {
   if (
@@ -100,9 +100,17 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const upload = multer({ storage, fileFilter });
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+});
 
-app.post("/orders/create", upload.array('files',3), async (req, res) => {
+//ADMINS
+/* POST: CREATE ORDER */
+app.post("/orders/create", upload.array("files", 3), async (req, res) => {
   let files = [];
   if (req.files && req.files.length > 0) {
     files = req.files.map((file) => ({
@@ -123,10 +131,10 @@ app.post("/orders/create", upload.array('files',3), async (req, res) => {
     phone: req.body.phone,
     amount: req.body.amount,
     work: req.body.work,
-    files: files 
+    files: files,
   });
   order.paymentStatus = "pending";
-  order.paymentAmount = "";
+  order.paymentAmount = 0;
 
   order
     .save()
@@ -134,7 +142,7 @@ app.post("/orders/create", upload.array('files',3), async (req, res) => {
       console.log(savedOrder);
       res.status(200).json({
         message: "Details submitted successfully",
-      });;
+      });
     })
     .catch((err) => {
       if (err instanceof multer.MulterError) {
@@ -142,7 +150,7 @@ app.post("/orders/create", upload.array('files',3), async (req, res) => {
         console.log("Multer_Error_occured:", err);
       } else if (err) {
         res.status(500).json({
-          error: error
+          error: error,
         });
         console.log(err.message); // An unknown error occurred when uploading.
       }
@@ -150,3 +158,35 @@ app.post("/orders/create", upload.array('files',3), async (req, res) => {
 });
 
 
+/* GET:  ALL ORDERS */
+app.get("/orders", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+/* DELETE:  SINGLE ORDER */
+
+
+/* SALES:  TOTAL SALES */
+
+//USER
+
+/* GET:  SINGLE ORDER*/
+// Get single order
+app.get("/orders/:clientId", async (req, res) => {
+  Order.find({ clientId: req.params.clientId })
+    .populate("files")
+    .then((order) => {
+      res.json(order);
+    })
+    .catch((err) => {
+      console.log(err.message);
+      res.status(500).send("Server error");
+    });
+});

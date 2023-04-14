@@ -7,7 +7,8 @@ export default function Navbar() {
   const [showAadharMenu, setShowAadharMenu] = useState(false);
   const [showPanCardMenu, setShowPanCardMenu] = useState(false);
   const [showPassportMenu, setShowPassportMenu] = useState(false);
-
+  const [showLicenseMenu, setShowLicenseMenu] = useState(false);
+  
   const handleAadharMenu = () => {
     setShowAadharMenu(!showAadharMenu);
   };
@@ -20,12 +21,16 @@ export default function Navbar() {
     setShowPassportMenu(!showPassportMenu);
   };
 
+  const handleLicenseMenu = () => {
+    setShowLicenseMenu(!showLicenseMenu);
+  };
+
   return (
     <div className="navmenu">
-       <div className="navbarlogo">
+      <div className="navitems">
+      <div className="navbarlogo">
         <img src={docsimg} alt="Logo" />
       </div>
-      <div className="navitems">
         <li className="anchor" href="#">
           <Link to="/">Home</Link>
         </li>
@@ -34,14 +39,15 @@ export default function Navbar() {
           onMouseEnter={handleAadharMenu}
           onMouseLeave={handleAadharMenu}
         >
-          Aadhar
+          Aadhaar
+          <span className="arrow-down"></span>
           {showAadharMenu && (
-            <ul className="submenu">
+            <ul className="dropdown">
               <li>
-                <Link to="/aadhar-apply">Apply New Aadhar</Link>
+                <Link to="/aadhar-apply">Apply New Aadhaar</Link>
               </li>
               <li>
-                <Link to="/aadhar-correction">Aadhar Correction</Link>
+                <Link to="/aadhar-correction">Aadhaar Correction</Link>
               </li>
             </ul>
           )}
@@ -52,10 +58,11 @@ export default function Navbar() {
           onMouseLeave={handlePanCardMenu}
         >
           Pan Card 
+          <span className="arrow-down"></span>
           {showPanCardMenu && (
-            <ul className="submenu">
+            <ul className="dropdown">
               <li>
-                <Link to="/panform">Apply New Pan Card</Link>
+                <Link to="/panform-apply">Apply New Pan Card</Link>
               </li>
               <li>
                 <Link to="/pan-correction">Pan Card Correction</Link>
@@ -69,10 +76,11 @@ export default function Navbar() {
           onMouseLeave={handlePassportMenu}
         >
           PassPort
+          <span className="arrow-down"></span>
           {showPassportMenu && (
-            <ul className="submenu">
+            <ul className="dropdown">
               <li>
-                <Link to="/passport">Apply New PassPort</Link>
+                <Link to="/passport-apply">Apply New PassPort</Link>
               </li>
               <li>
                 <Link to="/passport-correction">Passport Correction</Link>
@@ -80,13 +88,50 @@ export default function Navbar() {
             </ul>
           )}
         </li>
+        <li
+          className="anchor"
+          onMouseEnter={handleLicenseMenu}
+          onMouseLeave={handleLicenseMenu}
+        >
+          License
+          <span className="arrow-down"></span>
+          {showLicenseMenu && (
+            <ul className="dropdown">
+              <li>
+                    <Link to="/license-apply">Apply New License</Link>
+                  </li>
+                  <li>
+                    <Link to="/license-correction">License Duplicate</Link>
+                  </li>
+                  <li>
+                    <Link to="/license-correction">License Renewal</Link>
+                  </li>
+            </ul>
+          )}
+        </li>
         <li  className="anchor">
           <Link to="/orderDetails">Check Order </Link>
+        </li>
+        <li className="anchor" href="#">
+          <Link to="/epfo">EPFO</Link>
+        </li>
+        <li className="anchor" href="#">
+          <Link to="/">Contact</Link>
         </li>
         <li  className="anchor">
           <Link to="/admin"> Admin</Link>
         </li>
       </div>
+      <div className="nav-bg-fostrap">
+            <div className="navbar-fostrap">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <a href="/" className="title-mobile">
+              DocsZone
+            </a>
+          </div>
     </div>
   );
 }

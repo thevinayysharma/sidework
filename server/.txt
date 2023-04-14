@@ -7,3 +7,35 @@ https://github.com/ashwamegh/razorpay-react-demo
 
 https://vegibit.com/node-js-mongodb-user-registration/
 https://programmingmentor.com/post/save-form-nodejs-mongodb/
+
+have common error handling middleware
+use common api names
+
+
+brad https://github1s.com/bradtraversy/mongo_file_uploads
+
+
+//CODE grounds
+background: #3BBA9C -- greenish code
+background: #2E3047  --darkih blue
+
+
+//website 
+
+https://preview.themeforest.net/item/docy-documentation-and-knowledge-base-html5-template-with-helpdesk-forum/full_screen_preview/30855501?_ga=2.248838727.1112782408.1681323829-1703198158.1679569493
+
+
+19. 
+https://blog.hubspot.com/website/website-color-schemes
+
+Dove Gray: #666666
+Aero Blue: #AEFFF1
+
+
+//admin
+https://dribbble.com/shots/15719549-Order-Details-Admin-Dashboard-Design-Bringova 
+Viking: #7EB2DD  | bluish
+Harry: #FFE8D4   | pinksih
+
+Seagull: #87CEEB   | pinkish
+Cosmos: #FFD8D8  | bluish

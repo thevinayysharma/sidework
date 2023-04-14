@@ -20,7 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/panform" element={<PanForm />} />
+          <Route path="/panform-apply" element={<PanForm />} />
           <Route path="/orderDetails" element={<OrderDetails />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/payment" element={<Payment />} />

@@ -10,13 +10,14 @@ const Admin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const salesResponse = await axios.get(
-          "/orders/sales"
-        );
-        setTotalSales(salesResponse.data.totalSales);
+        // const salesResponse = await axios.get(
+        //   "/sales"
+        // );
+        // setTotalSales(salesResponse.data);
 
         const ordersResponse = await axios.get("/orders");
-        setCurrentOrders(ordersResponse.data.currentOrders);
+        console.log(ordersResponse);
+        setCurrentOrders(ordersResponse.data);
       } catch (error) {
         console.log(error);
       }
@@ -61,8 +62,13 @@ const Admin = () => {
     }
   };
 
+  const toggleDetails = () => {
+    setShowOrders(!currentOrders);
+  };
+
+  
   return (
-    <div className="user-box">
+    <div className="adminContainer">
       <div className="sales-info">
         <p>Total Sales: INR {totalSales}</p>
       </div>
@@ -77,26 +83,32 @@ const Admin = () => {
             <h4>Current Orders</h4>
             {currentOrders.map((order) => (
               <div className="order-box" key={order.clientId}>
-                <div>
+                <div className="order-header">
                   <p>Order ID: {order.clientId}</p>
-                  <p>Work:{order.work}</p>
-                  <p>firstName:{order.firstName}</p>
-                  <p>lastName:{order.lastName}</p>
+                  <p>Work: {order.work}</p>
+                  <p>First Name: {order.firstName}</p>
                   <p>Last Name: {order.lastName}</p>
                   <p>Middle Name: {order.middleName}</p>
-                  <p>Age: {order.age}</p>
-                  <p>DOB: {order.dob}</p>
+                  <p>DoB: {order.dob}</p>
                   <p>Gender: {order.gender}</p>
                   <p>Email: {order.email}</p>
                   <p>Phone: {order.phone}</p>
                   <p>Payment Status: {order.paymentStatus}</p>
-                  <p>Amount: INR {order.amount}</p>
-                  <p>Payment Amount: INR {order.paymentAmount}</p>
-                  <button onClick={() => downloadFile(order.files[0].url)}> Download file </button>
+                  <p>
+                    Order Amount: &#8377;{order.amount} | Paid Amount: &#8377;{" "}
+                    {order.paymentAmount}{" "}
+                  </p>
+                  <p>Payment Status: {order.paymentStatus}</p>
                 </div>
                 <div className="order-actions">
-                  <button onClick={() => handleDelete(order.clientId)}>Delete</button>
-                  <button>WhatsApp Integration</button>
+                  <button onClick={() => downloadFile(order.files[0].url)}>
+                    {" "}
+                    Download file{" "}
+                  </button>
+                  <button onClick={() => handleDelete(order.clientId)}>
+                    Delete
+                  </button>
+                  <button>WhatsApp </button>
                 </div>
               </div>
             ))}

@@ -3,51 +3,56 @@ import axios from "axios";
 import "./orderdetails.css"; // Import CSS file
 
 function OrderDetails() {
-  const [orderId, setOrderId] = useState("");
-  const [userDetails, setUserDetails] = useState(null);
-  const [paymentStatus, setPaymentStatus] = useState("");
+  const [clientId, setclientId] = useState("");
+  const [userDetails, setUserDetails] = useState([]);
   const [userExists, setUserExists] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async () => {
     setLoading(true);
+    if(clientId !== ""){
+    
     try {
-      const response = await axios.get(`http://localhost:5000/order/${orderId}`);
-      const { userExists, userDetails, paymentStatus, orderId } = response.data;
-      setUserExists(userExists);
-      setUserDetails(userDetails);
-      setPaymentStatus(paymentStatus);
-      setOrderId(orderId);
+      const response = await axios.get(`/orders/${clientId}`);
+      const data  = response.data;
+      console.log(data);
+      if(data && data.length > 0){
+        setUserExists(!userExists);
+      }
+      setUserDetails(data);
     } catch (error) {
       console.error(error);
     }
     setLoading(false);
   };
+}
 
   return (
     <div className="order-details-container">
       <h1 className="order-details-heading">Order Details</h1>
       <label>
-        Order ID:
-        <input type="text" value={orderId} onChange={(e) => setOrderId(e.target.value)} />
+        Client ID:
+        <input type="text" value={clientId} onChange={(e) => setclientId(e.target.value)} />
       </label>
       <button className="order-details-button" onClick={handleSearch} disabled={loading}>
         {loading ? "Loading..." : "Search"}
       </button>
       {userExists ? (
-        <div className="order-details-info">
-          <p className="order-details-info-item">User Details:</p>
-          <p className="order-details-info-item">Name: {userDetails.name}</p>
-          <p className="order-details-info-item">Email: {userDetails.email}</p>
-          <p className="order-details-info-item">Payment Status: {paymentStatus}</p>
-          <p className="order-details-info-item">Order ID: {orderId}</p>
-        </div>
+        userDetails.map((user, index) => (
+          <div className="order-details-info" key={index}>
+            <h2> Your Details:</h2>
+                       <p className="order-details-info-item">Order ID: {user.clientId}</p>
+            <p className="order-details-info-item">Name: {user.firstName} {user.lastName}</p>
+            <p className="order-details-info-item">Email: {user.email}</p>
+            <p className="order-details-info-item">Payment Status: {user.paymentStatus}</p>
+            <p className="order-details-info-item">Order Amount: {user.amount}</p>
+          </div>
+        ))
       ) : (
-        <p className="order-details-message">Please Search for Past orders with your orderId.</p>
+        <p className="order-details-message">Please Search with your clientId.</p>
       )}
     </div>
   );
 }
 
 export default OrderDetails;
-

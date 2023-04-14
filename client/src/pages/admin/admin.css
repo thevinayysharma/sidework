@@ -1,9 +1,16 @@
-.user-box {
+.adminContainer {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 30px;
   margin-bottom: 50px;
+}
 
+.sales-info{
+  margin: 10px;
+
+}
+.sales-info p {
+  padding: 2px;
 }
 
 .user-info {
@@ -21,10 +28,7 @@
   margin-bottom: 5px;
 }
 
-.sales-info p {
-  font-weight: bold;
-  margin-bottom: 20px;
-}
+
 
 .order-box {
   border: 1px solid #ddd;
@@ -67,6 +71,7 @@
 }
 
 
+
 .order-box p {
   margin: 5px 0;
 }
@@ -75,16 +80,25 @@
   margin-right: 10px;
 }
 
+.order-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .order-actions button {
-  background-color: #007bff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #5e8dc0;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-rder-actions button:last-child {
+.order-actions button:last-child {
   background-color: #28a745;
 }
 
