@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import docsimg from "../../assets/docsspacelogo.png";
@@ -8,6 +8,7 @@ export default function Navbar() {
   const [showPanCardMenu, setShowPanCardMenu] = useState(false);
   const [showPassportMenu, setShowPassportMenu] = useState(false);
   const [showLicenseMenu, setShowLicenseMenu] = useState(false);
+  const [clicked, setClicked] = useState(false);
   
   const handleAadharMenu = () => {
     setShowAadharMenu(!showAadharMenu);
@@ -25,11 +26,18 @@ export default function Navbar() {
     setShowLicenseMenu(!showLicenseMenu);
   };
 
+  const handleClick = () => {
+    setClicked(!clicked);
+  };
+
+
+
   return (
     <div className="navmenu">
-      <div className="navitems">
+    {/* <div className="navitems"> */}
+    <div className={`navitems ${clicked ? 'active' : ''}`}>
       <div className="navbarlogo">
-        <img src={docsimg} alt="Logo" />
+        <img src={docsimg} alt="Logo" />'
       </div>
         <li className="anchor" href="#">
           <Link to="/">Home</Link>
@@ -123,7 +131,8 @@ export default function Navbar() {
         </li>
       </div>
       <div className="nav-bg-fostrap">
-            <div className="navbar-fostrap">
+            {/* <div className="navbar-fostrap" onClick={handleClick}> */}
+            <div className={`navbar-fostrap ${clicked ? 'clicked' : ''}`} onClick={handleClick}>
               <span></span>
               <span></span>
               <span></span>
