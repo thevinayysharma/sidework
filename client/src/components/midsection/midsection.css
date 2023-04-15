@@ -1,31 +1,32 @@
 .midContainer {
-    font-weight: 200;
+    /* font-weight: 200;
     font-weight: 400;
-    line-height: 1.563;
-    margin: 60px auto;
-   
+    line-height: 1.563; */
+    margin: 10px auto;
+    margin-bottom: 60px; 
+    border: 3px solid green;
   }
 
+  .header {
+  font-weight: 600;
 
-  h1{
-    font-weight: 600;
-    max-width: 660px;
-    margin: 0 auto 64px;
   }
- 
-.card {
-    display: flex;
-    flex-direction: row;
-    justify-content: center; 
-    flex-wrap: wrap;
 
-}
-  .card1, .card2, .card3{
-    margin:30px;
-    /* border: 0.2px solid rgb(243, 238, 238); */
-    padding: 2rem;
-    width: 25rem;
+  .services{
+     border:3px solid red;
+     display: flex;
+     flex-direction: row;
+     justify-content: center; 
+     flex-wrap: wrap;
+  }
+
+  .card{
+    margin: 10px 20px;
+    width: 200px;
+    height: 250px;
+    padding:5px;
     background: #e0f2fe;
+    border: 0.2px solid rgb(243, 238, 238);
   }
 
 

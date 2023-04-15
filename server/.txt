@@ -19,6 +19,7 @@ brad https://github1s.com/bradtraversy/mongo_file_uploads
 background: #3BBA9C -- greenish code
 background: #2E3047  --darkih blue
 
+https://imagecolorpicker.com/en
 
 //website 
 

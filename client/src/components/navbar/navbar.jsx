@@ -33,13 +33,14 @@ export default function Navbar() {
 
 
   return (
+    <div className="outerNavContainer">
     <div className="navmenu">
     {/* <div className="navitems"> */}
     <div className={`navitems ${clicked ? 'active' : ''}`}>
       <div className="navbarlogo">
         <img src={docsimg} alt="Logo" />'
       </div>
-        <li className="anchor" href="#">
+        <li className="anchor">
           <Link to="/">Home</Link>
         </li>
         <li
@@ -52,10 +53,10 @@ export default function Navbar() {
           {showAadharMenu && (
             <ul className="dropdown">
               <li>
-                <Link to="/aadhar-apply">Apply New Aadhaar</Link>
+                <Link to="/aadhaar-apply">Apply New Aadhaar</Link>
               </li>
               <li>
-                <Link to="/aadhar-correction">Aadhaar Correction</Link>
+                <Link to="/aadhaar-correction">Aadhaar Correction</Link>
               </li>
             </ul>
           )}
@@ -70,7 +71,7 @@ export default function Navbar() {
           {showPanCardMenu && (
             <ul className="dropdown">
               <li>
-                <Link to="/panform-apply">Apply New Pan Card</Link>
+                <Link to="/pan-apply">Apply New Pan</Link>
               </li>
               <li>
                 <Link to="/pan-correction">Pan Card Correction</Link>
@@ -112,19 +113,19 @@ export default function Navbar() {
                     <Link to="/license-correction">License Duplicate</Link>
                   </li>
                   <li>
-                    <Link to="/license-correction">License Renewal</Link>
+                    <Link to="/license-renewal">License Renewal</Link>
                   </li>
             </ul>
           )}
         </li>
         <li  className="anchor">
-          <Link to="/orderDetails">Check Order </Link>
+          <Link to="/orderDetails">Check Order</Link>
         </li>
         <li className="anchor" href="#">
           <Link to="/epfo">EPFO</Link>
         </li>
         <li className="anchor" href="#">
-          <Link to="/">Contact</Link>
+          <Link to="/contact">Contact</Link>
         </li>
         <li  className="anchor">
           <Link to="/admin"> Admin</Link>
@@ -141,6 +142,7 @@ export default function Navbar() {
               DocsZone
             </a>
           </div>
+    </div>
     </div>
   );
 }
