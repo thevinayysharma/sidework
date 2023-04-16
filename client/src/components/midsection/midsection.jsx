@@ -1,67 +1,116 @@
 import React from "react";
 import "./midsection.css";
+import msoneimagebg from "../../assets/msimage.png";
+import workimg from "../../assets/work_image.png";
+// ICONS
+import aadharIcon from "../../assets/icons/aadhaar.png";
+import panIcon from "../../assets/icons/pan.jpg";
+import passportIcon from "../../assets/icons/passport.jpg";
+import dlIcon from "../../assets/icons/license.png";
+import epfoIcon from "../../assets/icons/epfo.jpg";
 
 function MidSection() {
   return (
     <div className="midContainer">
-      <div className="header">
-        <h1>Our Services</h1>
-      </div>
-
       <div className="services">
-        <div className="card">
-          <div className="image"></div>
-          <div className="title">
-            <p className="text">AADHAR</p>
+        <img id="imgbg" src={msoneimagebg} className="imagems" />
+        <p className="msHeader">Our Services</p>
+        <p className="msHeader msHeaderpara ">
+          Avail lots of services, from Consulting to applying documents!
+        </p>
+        <div className="card-container">
+          <div className="card">
+            <div className="imageIcon">
+              <img id="imge" src={aadharIcon} alt="yo" />
+            </div>
+            <div className="title">
+              <p className="text">AADHAR</p>
+              <ul className="list-unstyled">
+                <li>
+                  <span className="arrow"> &#9733; </span>Apply new Aadhar
+                </li>
+                <li>
+                  <span className="arrow"> &#9733; </span>Aadhar Correction{" "}
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <div className="card">
-          <div className="image"></div>
-          <div className="title">
-            <p className="text">PAN</p>
+          <div className="card">
+            <div className="imageIcon">
+              <img id="imge" src={panIcon} alt="yo" />
+            </div>
+            <div className="title">
+              <p className="text">PAN</p>
+              <ul className="list-unstyled">
+                <li>
+                  <span className="arrow"> &#9733; </span>Apply new PAN
+                </li>
+                <li>
+                  <span className="arrow"> &#9733; </span>Pan Correction{" "}
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
 
-        <div className="card">
-          <div className="image"></div>
-          <div className="title">
-            <p className="text">PASSPORT</p>
+          <div className="card">
+            <div className="imageIcon">
+              <img id="imge" src={passportIcon} alt="yo" />
+            </div>
+            <div className="title">
+              <p className="text">PASSPORT</p>
+              <ul className="list-unstyled">
+                <li>
+                  <span className="arrow"> &#9733; </span>Apply new passport
+                </li>
+                <li>
+                  <span className="arrow"> &#9733; </span>Passport Renewal{" "}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="imageIcon">
+              <img id="imge" src={dlIcon} alt="yo" />
+            </div>
+            <div className="title">
+              <p className="text">LICENSE</p>
+              <ul className="list-unstyled">
+                <li>
+                  <span className="arrow"> &#9733; </span>Apply new License
+                </li>
+                <li>
+                  <span className="arrow"> &#9733; </span>License Renew{" "}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="imageIcon">
+              <img id="imge" src={epfoIcon} alt="yo" />
+            </div>
+            <div className="title">
+              <p className="text">EPFO</p>
+              <ul className="list-unstyled">
+                <li>
+                  <span className="arrow"> &#9733; </span>EPFO Consulting
+                </li>
+                <li>
+                  <span className="arrow"> &#9733; </span>EPFO services{" "}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+        <p className="quesms">Want to know more or have a Question?</p>
       </div>
 
-      <div className="workdesc">
-        <div className="header">
-          <h1>Our Services</h1>
-        </div>
-
-        <div className="card">
-          <div className="card1">
-            <h2 className="card__title">1. Get set Write</h2>
-            <p className="card__text">
-              Please fill the form with required details with an easy to fill
-              from. All documents filling with only a handful of details.
-            </p>
-          </div>
-
-          <div className="card2">
-            <h2 className="card__title">2. Pay in Seconds</h2>
-            <p className="card__text">
-              Pay a small fee for our serrvices with a secure razorpay checkout.
-              All feedback is appreciated to help us improve our offering!
-            </p>
-          </div>
-
-          <div className="card3">
-            <h2 className="rating-card__title">3. Get your Work ticket</h2>
-            <p className="rating-card__text">
-              Get requested details along with confrimation on whatsapp
-              automatically. All sevices and tickes on whatsapp enabled.
-            </p>
-          </div>
-        </div>
+      <div className="workdesc-container">
+        <img id="imgee" className="workimg" src={workimg} alt=""/>
       </div>
+
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import "./footer.css";
+import docsimg from "../../assets/docsspacelogo.png";
 
 // import Logo from "../assets/logo.png"
 export default function Footer() {
@@ -46,7 +47,7 @@ export default function Footer() {
                 <div className="footer-logo">
                   <a href="index.html">
                     <img
-                      src="assets/images/logo.png"
+                      src={docsimg}
                       className="img-fluid"
                       alt="logo"
                     />
@@ -54,8 +55,8 @@ export default function Footer() {
                 </div>
                 <div className="footer-text">
                   <p>
-                    computerzone helps in applying to all sort of gove services
-                    inclusing adhar pan cand social services{" "}
+                    Docspace aids in applying to all sort of government services
+                    in an easy and conveninent way{" "}
                   </p>
                 </div>
                 <div className="footer-social-icon">
@@ -121,11 +122,11 @@ export default function Footer() {
             <div className="col-xl-4 col-lg-4 col-md-6 mb-50">
               <div className="footer-widget">
                 <div className="footer-widget-heading">
-                  <h3>Subscribe</h3>
+                  <h3>Have a Query ?</h3>
                 </div>
                 <div className="footer-text mb-25">
                   <p>
-                    Don’t miss to subscribe to our new feeds, kindly fill the
+                    EEmail us right await and let us know how we can help you, kindly fill the
                     form below.
                   </p>
                 </div>
@@ -149,7 +150,7 @@ export default function Footer() {
               <div className="copyright-text">
                 <p>
                   Copyright &copy; 2023, All Right Reserved{" "}
-                  <a href="#">ComputerZone</a>
+                  <a href="#">DocsSpace</a>
                 </p>
               </div>
             </div>

@@ -9,7 +9,6 @@
   }
   .footer-cta {
     border-bottom: 1px solid #373636;
-
   }
   .single-cta i {
     color: #ff5e14;
@@ -33,6 +32,7 @@
     font-size: 15px;
     margin-top:20px;
   }
+
   .footer-content {
     position: relative;
     z-index: 2;

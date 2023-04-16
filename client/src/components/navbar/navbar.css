@@ -91,13 +91,15 @@ a {
 .dropdown {
   position: absolute;
   top: 100%;
-  left: 53%;
+  left: 95%;
   transform: translateX(-50%);
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 2px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  background-color: #eaebec;
+  background-color: #f1f5f9;
+  font-size: 14px;
+  min-width: 200px;
 }
 
 .dropdown li {
@@ -105,6 +107,7 @@ a {
   font-size: 15px;
   display: block;
   font-weight: 400;
+  border-bottom: 1px solid #cbd5e1;
 }
 
 .dropdown li:last-child {
@@ -117,7 +120,10 @@ a {
     display: none;
   }
 
-
+  .dropdown{
+    width:90px;
+    left:48%;
+  }
 
   .nav-bg-fostrap {
     display: inline-block;
