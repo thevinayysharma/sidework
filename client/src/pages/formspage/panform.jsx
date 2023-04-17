@@ -50,9 +50,7 @@ export default function PanForm() {
     lastName: Yup.string().required("Required"),
     middleName: Yup.string().notRequired(),
     dob: Yup.date().required("Required dob"),
-    gender: Yup.string()
-      .oneOf(["male", "female"])
-      .required("Required Gender"),
+    gender: Yup.string().oneOf(["male", "female"]).required("Required Gender"),
     email: Yup.string()
       .email("Invalid email addresss")
       .required("Required email"),
@@ -166,25 +164,36 @@ export default function PanForm() {
                   <label htmlFor="firstName">First Name</label>
                   <Field name="firstName" type="text" />
                   <ErrorMessage
-                  component="div" className="error"  name="firstName" />
+                    component="div"
+                    className="error"
+                    name="firstName"
+                  />
                 </div>
 
                 <div>
                   <label htmlFor="lastName">Last Name</label>
                   <Field name="lastName" type="text" />
-                  <ErrorMessage   component="div" className="error"  name="lastName" />
+                  <ErrorMessage
+                    component="div"
+                    className="error"
+                    name="lastName"
+                  />
                 </div>
 
                 <div>
                   <label htmlFor="middleName">Middle Name</label>
                   <Field name="middleName" type="text" />
-                  <ErrorMessage  component="div" className="error" name="middleName" />
+                  <ErrorMessage
+                    component="div"
+                    className="error"
+                    name="middleName"
+                  />
                 </div>
 
                 <div>
                   <label htmlFor="dob">Date of Birth</label>
                   <Field name="dob" type="date" />
-                  <ErrorMessage  component="div" className="error" name="dob" />
+                  <ErrorMessage component="div" className="error" name="dob" />
                 </div>
 
                 <div>
@@ -194,13 +203,21 @@ export default function PanForm() {
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </Field>
-                  <ErrorMessage  component="div" className="error" name="gender" />
+                  <ErrorMessage
+                    component="div"
+                    className="error"
+                    name="gender"
+                  />
                 </div>
                 <div>
                   <div className="col-25">
                     <label htmlFor="phone">Phone Number</label>
                     <Field name="phone" type="text" />
-                    <ErrorMessage   component="div" className="error" name="phone" />
+                    <ErrorMessage
+                      component="div"
+                      className="error"
+                      name="phone"
+                    />
                   </div>
                 </div>
                 <div>
@@ -210,7 +227,11 @@ export default function PanForm() {
                     type="email"
                     placeholder="name@gmail.com"
                   />
-                  <ErrorMessage  component="div" className="error" name="email" />
+                  <ErrorMessage
+                    component="div"
+                    className="error"
+                    name="email"
+                  />
                 </div>
 
                 <div>
@@ -225,12 +246,12 @@ export default function PanForm() {
                       setFieldValue("files", event.currentTarget.files)
                     }
                   />
-                  <ErrorMessage  name="files" />
+                  <ErrorMessage name="files" />
                 </div>
                 <div>
                   <label htmlFor="comments">Comments (Any Message)</label>
                   <Field name="comments" type="text" as="textarea" />
-                  <ErrorMessage  name="comments" />
+                  <ErrorMessage name="comments" />
                 </div>
                 <p id="declrtn"> DECLARATION and TERMS OF SERVICE</p>
                 <div className="terms-container">
