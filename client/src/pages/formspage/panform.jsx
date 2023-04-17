@@ -1,4 +1,4 @@
-import "./panform.css";
+import "./forms.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -49,13 +49,13 @@ export default function PanForm() {
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
     middleName: Yup.string().notRequired(),
-    dob: Yup.date().required("please enter your dob"),
+    dob: Yup.date().required("Required dob"),
     gender: Yup.string()
       .oneOf(["male", "female"])
-      .required("Please select your gender"),
+      .required("Required Gender"),
     email: Yup.string()
       .email("Invalid email addresss")
-      .required("Please Enter your email"),
+      .required("Required email"),
     phone: Yup.string()
       .required("Required")
       .matches(phoneRegExp, "Invalid phone number"),
@@ -129,14 +129,14 @@ export default function PanForm() {
   };
 
   return (
-    <div className="panContainer">
-      <div className="form_title_bg">
-        <h1>Pan Card Apply</h1>
-        <p>&nbsp; &nbsp;Home → New Pan Card </p>
+    <div className="form-container">
+      <div className="form_title">
+        <h2>Pan Card Apply</h2>
+        <p className="direction">Home → New Pan Card </p>
+        <p>
+          Your OrderID: <span className="orderId">{clientId}</span>
+        </p>
       </div>
-      <p>
-        Your OrderID: <span className="orderId">{clientId}</span>
-      </p>
       {dataSubmitted ? (
         <p>
           Data Submitted <b>Successfully</b>You are being redirected to the
@@ -165,23 +165,28 @@ export default function PanForm() {
                 <div>
                   <label htmlFor="firstName">First Name</label>
                   <Field name="firstName" type="text" />
-                  <ErrorMessage name="firstName" />
+                  <ErrorMessage
+                  component="div" className="error"  name="firstName" />
                 </div>
+
                 <div>
                   <label htmlFor="lastName">Last Name</label>
                   <Field name="lastName" type="text" />
-                  <ErrorMessage name="lastName" />
+                  <ErrorMessage   component="div" className="error"  name="lastName" />
                 </div>
+
                 <div>
                   <label htmlFor="middleName">Middle Name</label>
                   <Field name="middleName" type="text" />
-                  <ErrorMessage name="middleName" />
+                  <ErrorMessage  component="div" className="error" name="middleName" />
                 </div>
+
                 <div>
                   <label htmlFor="dob">Date of Birth</label>
                   <Field name="dob" type="date" />
-                  <ErrorMessage name="dob" />
+                  <ErrorMessage  component="div" className="error" name="dob" />
                 </div>
+
                 <div>
                   <label htmlFor="gender">Gender</label>
                   <Field name="gender" as="select">
@@ -189,22 +194,25 @@ export default function PanForm() {
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                   </Field>
-                  <ErrorMessage name="gender" />
+                  <ErrorMessage  component="div" className="error" name="gender" />
                 </div>
                 <div>
-                  <label htmlFor="phone">Phone Number (Indian)</label>
-                  <Field name="phone" type="text" />
-                  <ErrorMessage name="phone" />
+                  <div className="col-25">
+                    <label htmlFor="phone">Phone Number</label>
+                    <Field name="phone" type="text" />
+                    <ErrorMessage   component="div" className="error" name="phone" />
+                  </div>
                 </div>
                 <div>
-                  `<label htmlFor="email">Email Address</label>
+                  <label htmlFor="email">Email Address</label>
                   <Field
                     name="email"
                     type="email"
                     placeholder="name@gmail.com"
                   />
-                  <ErrorMessage name="email" />
+                  <ErrorMessage  component="div" className="error" name="email" />
                 </div>
+
                 <div>
                   <label htmlFor="files">Files (PDF or image)</label>
                   <Field
@@ -217,12 +225,12 @@ export default function PanForm() {
                       setFieldValue("files", event.currentTarget.files)
                     }
                   />
-                  <ErrorMessage name="files" />
+                  <ErrorMessage  name="files" />
                 </div>
                 <div>
                   <label htmlFor="comments">Comments (Any Message)</label>
                   <Field name="comments" type="text" as="textarea" />
-                  <ErrorMessage name="comments" />
+                  <ErrorMessage  name="comments" />
                 </div>
                 <p id="declrtn"> DECLARATION and TERMS OF SERVICE</p>
                 <div className="terms-container">
