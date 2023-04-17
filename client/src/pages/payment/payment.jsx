@@ -2,8 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import "./payment.css";
-import payimg from "../../assets/scatterred-forcefields.png";
-import image from "../../assets/docsspacelogo.png";
+import paymentimage from "../../assets/payment.png";
 
 function Payment() {
   const { state } = useLocation();
@@ -92,18 +91,39 @@ function Payment() {
   };
 
   return (
-    <div className="payment">
-      <img className="imgg" src={image} />
-      <img className="img" src={payimg} alt="bg" />
-      <div className="payment-content">
-        <p>
-          Thank you for choosing our service! To complete your purchase, please
-          make the payment below. We appreciate your business and look forward
-          to serving you again in the future.
-        </p>
-        <button className="payment-link" onClick={displayRazorpay}>
-          Pay Now
-        </button>
+    <div className="payment-container">
+
+        <div className="item-container">
+          <div className="item-details">
+            <div className="content">
+              <h3 className="payment-header">Payment Details</h3>
+              <div className="payment-details">
+                <p>ClientId: <span className="boldmsg">{clientId}</span></p>
+                <p>Amount: &#8377;  <span className="boldmsg">{amount}</span></p>
+                <hr/>
+              </div>
+              <p className="payment-message">
+                *Thank you for proceeding to payment gateway! To complete your
+                purchase, please click the payment button below. We appreciate
+                your patience and look forward to serving you again in the
+                future.
+              </p>
+              <button className="checkout-btn" onClick={displayRazorpay}>
+                Pay Now
+              </button>
+            </div>
+          </div>
+          <div className="payment-image">
+            <img className="pay-img" id="item-image" src={paymentimage} alt="name" />
+            <div className="sub-details">
+              <ul className="sub-details-list">
+                <li>Price Gst Included</li>
+                <li>Payment-gateway: razorpay</li>
+              </ul>
+              <p className="companyname">Docsspace pvt. ltd.</p>
+            </div>
+          </div>
+
       </div>
     </div>
   );

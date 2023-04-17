@@ -1,71 +1,152 @@
-/* .payment {
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,700');
 
-    margin: 40px 150px;
-    padding: 8px 16px;
-    border: 0.2px solid rgb(243, 238, 238);
-    border-radius: 5px;
-    margin-top: 20px;
-    cursor: pointer;
+.payment-container {
+  width: 100%;
+  letter-spacing: 2px;
+  font-family: 'Raleway', sans-serif;
+  background-image: url(../../assets/scatterred-forcefields.png);
 }
 
-.img {
-    position: relative; */
+.item-container {
+  background-color: #d3d8df;
+  height: 80vh;
+  width: 60%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 0.2px solid rgb(243, 238, 238);
+  box-shadow: 0 30px 50px 0 rgb(2 2 48 / 6%);
+}
 
-    .payment {
-        display: flex;
-        /* align-items: center; */
-        justify-content: center;
-        position: relative;
-        height: 100vh;
-        justify-content: center;
-      }
-      .imgg {
-        margin-top:30px;
-        align-items: center;
-        width: 200px;
-        height: 200px;
-        opacity: 0.9;
-      }
-      .img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: -1;
-      }
-      
-      .payment-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        z-index: 1;
-      }
-      
-      .payment-content p {
-        font-size: 24px;
-        font-weight: 200;
-        margin-top: 20px;
-        /* color: #fff; */
-      }
-      
-      .payment-link {
-        background-color: #007bff;
-        border: none;
-        color: #fff;
-        padding: 12px 24px;
-        font-size: 18px;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 20px;
-        transition: all 0.3s ease;
-      }
-      
-      .payment-link:hover {
-        background-color: #0062cc;
-      }
-      
+
+.item-details {
+  background: #fff;
+  width: 48%;
+  height: 90%;
+  border-radius: 10px;
+}
+
+.content {
+  font-size: 12px;
+  color: #48484a;
+  font-weight: 400;
+  padding: 30px 40px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+
+.payment-details {
+  margin-top: 20px;
+  font-weight: 600;
+  color: #8c8d92;
+  line-height: 2;
+}
+
+.payment-message {
+  font-size: 0.9em;
+  color: #404040
+}
+
+.payment-image {
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+  width: 48%;
+  height: 90%;
+}
+
+#item-image {
+  height: 60%;
+  width: 100%;
+  z-index: 1;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.sub-details {
+  background: #f3f5f9;
+  padding-top: 40px;
+  font-size: 12px;
+  font-weight: 500;
+  height: 40%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.sub-details-list {
+  margin-left: 40px;
+}
+
+.companyname {
+  color: #29292c;
+  font-weight: 600;
+  margin-left: 40px;
+  font-size: 14px;
+}
+
+.checkout-btn {
+  background: linear-gradient(0deg, #019875, #029875);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  border: 0;
+  border-radius: 5px;
+  width: 100%;
+  height: 45px;
+  padding: 10px 30px;
+  margin-top: 50px;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(0deg, #075a47, #029875);
+}
+
+@media screen and (max-width: 600px) {
+  .item-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    margin: 20px auto;
+    top: 3;
+  }
+
+  .payment-message p {
+    font-size: 12px;
+  }
   
+  .pay-img {
+
+    width: 100%;
+  }
+  
+  #item-image {
+    display: block; /* or inline-block */
+    width: 100%;
+    height: 30%;
+  }
+  
+  .sub-details-list {
+    margin-left: 2px;
+    font-size: 10px;
+  }
+  
+  .companyname {
+    font-size: 10px;
+    margin-left: 10px;
+  }
+}
