@@ -39,8 +39,8 @@ const clientId = params.get("clientId");
       <h2 style={titleStyle}>Payment <span style={{color: "green"}}>Successful</span> <i class="fa-sharp fa-solid fa-thumbs-up" style={{color: "#247556"}}></i></h2>
     
       <p style={messageStyle}>
-        Your payment with paymentId <span style={{fontWeight : 500}}>{razorpayId}</span>was successful. Your order {clientId} will be processed shortly.
-        Thank you for connecting with us! Please Wait, we"ll contact you shortly. You can see your Orderdetails from here by entering your OrderId:
+        Your payment with paymentId <span style={{fontWeight : 500}}>{razorpayId}</span>was successful. Your order {clientId} will be processed & we"ll contact you shortly.
+        Thank you for connecting with us! Meanwhile, You can see your Orderdetails below by entering your OrderId:
          <li style={linkStyle}>
           <Link to="/orderDetails"><span style={{color: "#0e7490"}}>Check OrderDetails</span></Link>
         </li>
