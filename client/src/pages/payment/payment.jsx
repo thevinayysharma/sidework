@@ -108,7 +108,7 @@ function Payment() {
                 your patience and look forward to serving you again in the
                 future.
               </p>
-              <button className="checkout-btn" onClick={displayRazorpay}>
+              <button id="paybtn" className="checkout-btn" onClick={displayRazorpay}>
                 Pay Now
               </button>
             </div>

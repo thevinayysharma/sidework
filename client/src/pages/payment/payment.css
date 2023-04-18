@@ -109,7 +109,7 @@ h3 {
   transition: all 0.3s ease;
 }
 
-button:hover {
+#paybtn:hover {
   background: linear-gradient(0deg, #075a47, #029875);
 }
 
