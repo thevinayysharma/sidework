@@ -122,7 +122,7 @@ export default function Navbar() {
           <Link to="/orderDetails">Check Order</Link>
         </li>
         <li className="anchor" href="#">
-          <Link to="/epfo">EPFO</Link>
+          <Link to="/epfoConsulting">EPFO</Link>
         </li>
         <li className="anchor" href="#">
           <Link to="/contact">Contact</Link>

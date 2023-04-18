@@ -1,6 +1,7 @@
 import React from "react";
 import "./footer.css";
 import docsimg from "../../assets/docsspacelogo.png";
+import { Link } from "react-router-dom";
 
 // import Logo from "../assets/logo.png"
 export default function Footer() {
@@ -114,7 +115,7 @@ export default function Footer() {
                     <a href="#">Our Team</a>
                   </li>
                   <li>
-                    <a href="#">Contact us</a>
+                  <Link to="/contact">Contact Us</Link>
                   </li>
                 </ul>
               </div>

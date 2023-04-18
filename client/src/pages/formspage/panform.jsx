@@ -5,6 +5,7 @@ import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const termsAndServicesURL = "https://example.com/terms";
 
@@ -263,14 +264,8 @@ export default function PanForm() {
                     readOnly
                   />
                   <label htmlFor="agreeToTerms" className="checkbox-label">
-                    I have read and agree to the{" "}
-                    <a
-                      href={termsAndServicesURL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Terms and Services
-                    </a>
+                    I have read and agree to the{" "} 
+                    <Link to="/t&c">Terms & Conditions</Link>
                   </label>
                 </div>
                 <div className="checkout">

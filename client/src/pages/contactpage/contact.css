@@ -1,0 +1,76 @@
+.contact-us-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70vh;
+    background-color: #fafafa;
+    color: #f5b0b0;
+  }
+  
+  .contact-us-info {
+    width: 70%;
+    max-width: 700px;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .contact-us-info h2 {
+    font-size: 3rem;
+  }
+  
+  .contact-us-info p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+  
+  .contact-us-form {
+    width: 90%;
+    max-width: 700px;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .contact-us-form h3 {
+    font-size: 2rem;
+  }
+  
+  .contact-us-form input,
+  .contact-us-form textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  .contact-us-form button {
+    display: block;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #fff;
+    color: #52525b;
+  }
+  
+  .contact-us-form button:hover {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .contact-us-container {
+      flex-direction: row;
+    }
+  
+    .contact-us-info {
+      text-align: left;
+    }
+  }
+  
