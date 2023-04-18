@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useRef } from "react";
 import { Link } from "react-router-dom";
-
-const termsAndServicesURL = "https://example.com/terms";
 
 // generate random orderID
 const generateOrderId = () => {
@@ -41,7 +38,6 @@ export default function PanForm() {
   const [clientId, setclientId] = useState(null);
   const [dataSubmitted, setdataSubmitted] = useState(false);
 
-  const fileref = useRef(null);
   const navigate = useNavigate();
   const refData = { amount: 200, clientId: clientId };
 
@@ -59,35 +55,30 @@ export default function PanForm() {
       .required("Required")
       .matches(phoneRegExp, "Invalid phone number"),
     files: Yup.mixed()
-      .notRequired()
-      .test("is-file-too-big", "File exceeds 10MB", () => {
-        let valid = true;
-        const files = fileref?.current?.files;
-        if (files) {
-          const fileArr = Array.from(files);
-          fileArr.forEach((file) => {
-            const size = file.size / 1024 / 1024;
-            if (size > 10) {
-              valid = false;
+      .test("fileSize", "File Size is too large", (value) => {
+        if (value && value?.length > 0) {
+          for (let i = 0; i < value.length; i++) {
+            if (value[i].size > 7242880) {
+              return false;
             }
-          });
+          }
         }
-        return valid;
+        return true;
       })
-      .test("is-file-of-correct-type", "File is not of supported type", () => {
-        let valid = true;
-        const files = fileref?.current?.files;
-        if (files) {
-          const fileArr = Array.from(files);
-          fileArr.forEach((file) => {
-            const type = file.type.split("/")[1];
-            const validTypes = ["pdf", "jpeg", "png", "jpg"];
-            if (!validTypes.includes(type)) {
-              valid = false;
+      .test("fileType", "Unsupported File Format", (value) => {
+        if (value && value.length > 0) {
+          for (let i = 0; i < value.length; i++) {
+            if (
+              value[i].type != "image/png" &&
+              value[i].type != "image/jpg" &&
+              value[i].type != "application/pdf" &&
+              value[i].type != "image/jpeg"
+            ) {
+              return false;
             }
-          });
+          }
         }
-        return valid;
+        return true;
       }),
     comments: Yup.string().notRequired(),
   });
@@ -130,7 +121,7 @@ export default function PanForm() {
   return (
     <div className="form-container">
       <div className="form_title">
-        <h2>Pan Card Apply</h2>
+        <h2>Apply new Pan</h2>
         <p className="direction">Home → New Pan Card </p>
         <p>
           Your OrderID: <span className="orderId">{clientId}</span>
@@ -240,14 +231,17 @@ export default function PanForm() {
                   <Field
                     name="files" //values.files
                     type="file"
-                    fileref={fileref}
                     multiple
                     value={undefined}
                     onChange={(event) =>
                       setFieldValue("files", event.currentTarget.files)
                     }
                   />
-                  <ErrorMessage name="files" />
+                  <ErrorMessage
+                    component="div"
+                    className="error"
+                    name="files"
+                  />
                 </div>
                 <div>
                   <label htmlFor="comments">Comments (Any Message)</label>
@@ -264,7 +258,7 @@ export default function PanForm() {
                     readOnly
                   />
                   <label htmlFor="agreeToTerms" className="checkbox-label">
-                    I have read and agree to the{" "} 
+                    I have read and agree to the{" "}
                     <Link to="/t&c">Terms & Conditions</Link>
                   </label>
                 </div>
