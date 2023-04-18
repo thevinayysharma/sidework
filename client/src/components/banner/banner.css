@@ -90,7 +90,7 @@ button {
           clip-path: polygon(0 0, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%);
 } */
 
-
+/* 
 @media (min-width: 1200px) and (max-width: 1441px) and (max-height: 850px) {
   .container {
     max-width: 1100px;
@@ -137,5 +137,64 @@ button {
 @media (max-width: 570px) {
   .flex-container1 .collage-container {
     width: 100%;
+  }
+} */
+
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    top:7;
+    padding-left: 0px !important;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+  .flex-container1 {
+    margin-top: 30px;
+    flex-direction: column;
+  }
+  .flex-container1 .bantext {
+    font-size: 24px;
+    margin-top: 40px;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .flex-container1 .collage-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+
+  .flex-container1 .collage-container img{
+    display: inline-block;
+    top:0;
+  }
+  .flex-container1 .collage-container .collage .collage-image1 {
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    -webkit-clip-path: none;
+            clip-path: none;
+  }
+  .flex-container1 .collage-container .collage .collage-image2 {
+    position: relative;
+    
+    right: auto;
+    top: auto;
+    height: 100%;
+    width: 100%;
+    -webkit-clip-path: none;
+            clip-path: none;
   }
 }

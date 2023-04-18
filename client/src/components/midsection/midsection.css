@@ -1,62 +1,55 @@
 .midContainer {
-    /* font-weight: 200;
-    font-weight: 400;
-    line-height: 1.563; */
-    margin: 100px auto;
-    margin-bottom: 60px; 
-  }
+  margin: 90px auto;
+  margin-bottom: 60px;
+}
 
-  .services{
-   width: 100%;
-   height: 90vh;
-  
-   /* top: 0; */
-   /* left: 50%; */
-   /* z-index: -1; */
-  }
+.services {
+  width: 100%;
+  height: 90vh;
 
-  #imgbg{
-    /* vertical-align: middle;
-    border-style: none; */
-    position: absolute;
-    z-index: -1;
-    transform: translateX(39%);
-  }
+}
 
-  img{
-    overflow: clip;
-  }
-
-
- .msHeader   {
-    top:8%;
-    position: relative;
-    font-size: 40px;
-    font-weight: 700;
-    color: #232361;
-    text-align: center!important;
-  }
-
-/* p {
-  text-align: center;
-} */
-
- .msHeaderpara {
-  font-size: 18px;
-  line-height: 26px;
-  margin-bottom: 0;
-  font-family: "Roboto", sans-serif;
-    font-weight: 400;
-
-    color: #6b707f;
-    letter-spacing: 0.15px;
-    position: relative;
-    margin-bottom: 15px;
-    display: block;
+#imgbg {
+  position: absolute;
+  z-index: -1;
+  transform: translateX(28%);
+  height: auto;
 }
 
 
-.card-container{
+
+img {
+  overflow: clip;
+}
+
+
+.msHeader {
+  top: 8%;
+  position: relative;
+  font-size: 40px;
+  font-weight: 700;
+  color: #232361;
+  text-align: center !important;
+}
+
+
+
+.msHeaderpara {
+  font-size: 17px;
+  line-height: 24px;
+  margin-bottom: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+
+  color: #6b707f;
+  letter-spacing: 0.15px;
+  position: relative;
+  margin-bottom: 15px;
+  display: block;
+}
+
+
+.card-container {
   margin: 140px auto;
   margin-bottom: 30px;
   display: flex;
@@ -68,79 +61,137 @@
 }
 
 
-  .card{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 0px 20px;
-    width: 250px;
-    height: 280px;
-    border-radius: 20px;
-    padding: 30px 35px;
-    background: #fff;
-    border: 0.2px solid rgb(243, 238, 238);
-    box-shadow: 0 30px 50px 0 rgb(2 2 48 / 6%);
-  }
+.card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0px 20px;
+  width: 250px;
+  height: 280px;
+  border-radius: 20px;
+  padding: 30px 35px;
+  background: #fff;
+  border: 0.2px solid rgb(243, 238, 238);
+  box-shadow: 0 30px 50px 0 rgb(2 2 48 / 6%);
+}
 
 
-  #imge {
-    vertical-align: middle;
-    border-style: none;
-    width: 50px;
-    height: 50px;
-    margin-bottom:5px;
-  }
+#imge {
+  vertical-align: middle;
+  border-style: none;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+}
 
-  .text{
-    text-align: center;
-    font-weight: 700;
-    color: #232361;
-    font-size: 18px;
-  }
+.text {
+  text-align: center;
+  font-weight: 700;
+  color: #232361;
+  font-size: 18px;
+}
 
-  .list-unstyled{
-    line-height: 28px;
-    font-size: 16px;
-    height: 100%;
-    font-weight: 400;
-    letter-spacing: 0.15px;
-  }
+.list-unstyled {
+  line-height: 28px;
+  font-size: 16px;
+  height: 100%;
+  font-weight: 400;
+  letter-spacing: 0.15px;
+}
 
-  li{
-    color: #6b6b80;
-  }
+li {
+  color: #6b6b80;
+}
 
-  .arrow{
-    margin-right:2px;
-    width: auto;
-    font-size: 18px;
-    color: #fcd34d;
-  }
-  
+.arrow {
+  margin-right: 2px;
+  width: auto;
+  font-size: 18px;
+  color: #fcd34d;
+}
 
-  .quesms{
-    margin-top: 70px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 24px;
-    color: #4c4cf1;
-    font-weight: 600;
-    cursor: pointer;
-  }
 
-  .workdesc-container{
-    margin-top: 30px;
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-     background-image: url(https://global-uploads.webflow.com/61531b23c347e4fbd4a84209/619b16d9bb2a7f6d18d19737_dots2.svg); 
+.quesms {
+  margin-top: 70px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4c4cf1;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-  }
-  
-#imgee{
+.workdesc-container {
+  margin-top: 30px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://global-uploads.webflow.com/61531b23c347e4fbd4a84209/619b16d9bb2a7f6d18d19737_dots2.svg);
+
+}
+
+#imgee {
   width: 50%;
   height: 75%;
   width: 65%;
   /* margin-left: 300px; */
+}
+
+/* add media query for screen size 600px and below */
+@media (max-width: 600px) {
+
+  .midContainer .services{
+    height: auto;
+  }
+  /* make .card-container display horizontally */
+  .card-container {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #imgbg{
+    display: block;
+    vertical-align: middle;
+    transform: translateX(10%);
+    height: auto;
+  }
+  #imge{
+    display: block;
+  }
+
+  /* adjust the width of .card */
+  .card {
+    width: 50%;
+    margin: 10px;
+    padding: 30px 10px;
+  }
+
+  /* adjust the font size and line height of .text */
+  .text {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  /* adjust the font size and line height of .list-unstyled li */
+  .list-unstyled li {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  /* make .workdesc-container display horizontally */
+  .workdesc-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* adjust the width of .workimg */
+  .workimg {
+    width: 80%;
+    max-width: 300px;
+    margin: 20px;
+  }
 }
