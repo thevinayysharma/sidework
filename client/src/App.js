@@ -11,7 +11,8 @@ import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import Footer from "./components/footer/footer";
 import Navbar from "./components/navbar/navbar";
 import ContactUs from "./pages/contactpage/contact";
-
+import EPFOConsulting from "./pages/epfo/epfo";
+import TermsandConditions from "./pages/t&c";
 const hideFooter = window.location.pathname === "/payment";
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/paymentSuccess" element={<PaymentSuccess />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/epfoConsulting" element={<EPFOConsulting />} />
+          <Route path="/t&c" element={<TermsandConditions />} />
           {/* <Route path="/login" element={<Login />} /> */}
           {/* <Route path="/register" element={<Register />} /> */}
           <Route component={<HomePage />} />
