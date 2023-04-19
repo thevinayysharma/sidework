@@ -1,55 +1,25 @@
 .adminContainer {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 30px;
-  margin-bottom: 50px;
+  background: #f1f5f9;
 }
-
-.sales-info{
-  margin: 10px;
-
-}
-.sales-info p {
-  padding: 2px;
-}
-
-.user-info {
-  padding: 10px;
-  border: 0.2px solid rgb(243, 238, 238);
-
-}
-
-.user-info h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.user-info p {
-  margin-bottom: 5px;
-}
-
-
-
-.order-box {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.order-actions button {
-  margin-right: 10px;
-}
-
 
 .sales-info {
-  background-color: rgb(111, 196, 245);
-  padding: 3px;
-  width: 180px;
+  margin: 15px;
   border-radius: 3px;
+  background-color: rgb(111, 196, 245);
+  width: 170px;
+  display: inline-block;
 }
 
-.current-orders {
+.sales-info p {
+  text-align: center;
+  padding: 10px 15px;
+  font-weight: 500;
+}
+
+
+.allcurrent-orders {
+  margin: 0px 100px;
+  margin-bottom: 30px;
   border: 0.2px solid rgb(243, 238, 238);
   background-color: #fff;
   padding: 20px;
@@ -59,37 +29,55 @@
 
 .order-toggle {
   margin-bottom: 10px;
+  display: block;
+}
+
+.order-toggle button {
+  background: steelblue;
+  width: 15%;
+}
+
+.order-list-container {
+  border: 1px solid #ccc;
+  width: 90%;
 }
 
 .order-box {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
+
+.order-header p {
+  margin: 0;
+  }
+
+.toggle-icon {
+  cursor: pointer;
+  font-size: larger;
+  margin-left: 80px;
+  padding:5px;
+  background: #ccc;
+  }
 
 
 .order-box p {
-  margin: 5px 0;
+  margin: 2px 0;
 }
 
-.order-box button {
-  margin-right: 10px;
-}
 
 .order-actions {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .order-actions button {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items:flex-start;
   background-color: #5e8dc0;
   color: #fff;
   border: none;
@@ -105,6 +93,16 @@
 .order-actions button:hover {
   opacity: 0.8;
 }
+
+.delete-btn {
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  }
+
 
 /* Responsive styles */
 @media screen and (max-width: 768px) {
