@@ -169,11 +169,83 @@ app.get("/orders", async (req, res) => {
   }
 });
 
+/* GET: DOWNLOAD ORDER FILE */
+app.get('/orders/:filename', async (req, res) => {
+ 
+  try {
+    const file = await gfs.files.findOne({ filename: req.params.filename });
+    console.log(file);
+    if (!file) {
+      return res.status(404).json({
+        err: 'No file exists'
+      });
+    }
+    res.set('Content-Type', file.contentType);
+    // res.set('Content-Disposition', `attachment; filename="${file.filename}"`);
+    res.set({
+      "Content-Disposition": `attachment; filename=${req.params.filename}`,
+    });
+    const readStream = gfs.createReadStream({ filename: file.filename });
+    readStream.pipe(res);
+  } catch (error) {
+    console.log("Error downloading file", error);
+    res.sendStatus(404);
+  }
+});
+
+
+
+
+
+
+
 
 /* DELETE:  SINGLE ORDER */
+app.delete("/orders/:clientId", async (req, res) => {
+  const clientId = req.headers.clientId;
+  try {
+    const order = await Order.findOne({ clientId });
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    const paymentAmount = order.paymentAmount; // store payment amount
+    // Delete the order by clientId
+    await Order.findOneAndDelete({ clientId });
+    // Update total sales by subtracting the payment amount of the deleted order
+    await Sales.updateOne({}, { $inc: { totalSales: -paymentAmount } });
+
+    res.json({ message: "Order and its related details deleted successfully" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 
 /* SALES:  TOTAL SALES */
+
+// Get total sales
+// app.get("/sales", async (req, res) => {
+//   try {
+//     const result = await orders.aggregate([
+//       { $match: { paymentStatus: "paid" } },
+//       { $group: { _id: null, totalSales: { $sum: "$paymentAmount" } } },
+//     ]);
+//     const totalSales = result[0].totalSales;
+//     const salesOrder = new Order({
+//       clientId: "sales",
+//       paymentAmount: totalSales,
+//       paymentStatus: true,
+//     });
+//     await salesOrder.save();
+//     res.json(totalSales);
+//   } catch (err) {
+//     console.log(err.message);
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// });
+
 
 //USER
 
