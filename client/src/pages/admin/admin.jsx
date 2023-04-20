@@ -3,11 +3,12 @@ import axios from "axios";
 import "./admin.css";
 import FileSaver from 'file-saver';
 
-const Admin = () => {
+const Admin = ({ handleLogout }) => {
   const [totalSales, setTotalSales] = useState(0);
   const [currentOrders, setCurrentOrders] = useState([]);
   const [showOrders, setShowOrders] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const REACT_APP_API_URL = "http://localhost:3000";
 
@@ -36,28 +37,51 @@ const Admin = () => {
   };
 
 
+  // function downloadFile(filename) {
+  //   const url = `${REACT_APP_API_URL}/orders/${filename}`;
+  
+  //   fetch(url)
+  //     .then((response) => response.blob())
+  //     .then((blob) => {
+  //       const fileName = filename;
+  //       const link = document.createElement("a");
+  //       link.href = URL.createObjectURL(blob);
+  //       link.download = fileName;
+  //       link.click();
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error while downloading file:', error);
+  //     });
+  // }
   function downloadFile(filename) {
-    const url = `${REACT_APP_API_URL}/orders/${filename}`;
-  
-    fetch(url)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const fileName = filename;
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = fileName;
-        link.click();
-      })
-      .catch((error) => {
-        console.error('Error while downloading file:', error);
-      });
+    
+  fetch(`/orders/${filename}`)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("File not found");
+    }
+    return response.blob();
+  })
+  .then(blob => {
+    console.log(blob);
+    const objectUrl = URL.createObjectURL(blob);
+    const downloadLink = document.createElement("a");
+    downloadLink.href = objectUrl;
+    downloadLink.download = filename;
+    downloadLink.click();
+  })
+  .catch(error => {
+    console.error(error);
+    const errorMessage = document.createElement("p");
+    errorMessage.innerText = "File not found";
+    document.body.appendChild(errorMessage);
+  });
   }
-  
   
   // function downloadFile(filename) {
   //   axios({
   //     method: "GET",
-  //     url: `${REACT_APP_API_URL}/files/${filename}`,
+  //     url: `${REACT_APP_API_URL}/orders/${filename}`,
   //     responseType: "blob",
   //   })
   //     .then((response) => {
@@ -76,12 +100,11 @@ const Admin = () => {
       await axios.delete(`/orders/${clientId}`);
       // Refresh the orders list after deleting the user
       const ordersResponse = await axios.get("/orders");
-      setCurrentOrders(ordersResponse.data.currentOrders);
+      setCurrentOrders(ordersResponse.data);
     } catch (error) {
       console.log(error);
     }
   };
-
   const handleDelete = (clientId) => {
     if (window.confirm("Are you sure you want to delete this user order?")) {
       deleteUser(clientId);
@@ -92,6 +115,7 @@ const Admin = () => {
       <div className="sales-info">
         <p>Total Sales: INR {totalSales}</p>
       </div>
+      <button onClick={handleLogout}>Logout</button>
       <div className="allcurrent-orders">
         <div className="order-toggle">
           <button onClick={toggleShowAllOrders}>
@@ -104,7 +128,7 @@ const Admin = () => {
               <div className="order-box" key={order.clientId}>
                 <div className="order-header">
                   <p>
-                    Order ID: {order.clientId}
+                    Order ID: {order.clientId} 
                     <span
                       className="toggle-icon"
                       onClick={() => toggleIndividualDetails(order)}
@@ -132,13 +156,13 @@ const Admin = () => {
                         <div className="order-actions">
                           <p>Attachments:</p>
                           {order.files.map((file, index) => (
-                            <p key={index}>
-                              <button
+                            <div key={index}>
+                              <button className="dwnld-btn"
                                 onClick={() => downloadFile(file.filename)}
                               >
                                 Download File {index + 1}
                               </button>
-                            </p>
+                            </div>
                           ))}
                           <button
                             className="deletebtn"
