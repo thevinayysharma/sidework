@@ -8,12 +8,8 @@ import { Link } from "react-router-dom";
 
 // generate random orderID
 const generateOrderId = () => {
-  const chars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   let clientId = "";
-  for (let i = 0; i < 6; i++) {
-    clientId += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
+  clientId += Math.floor(Math.random() * 900000) + 100000;
   return clientId;
 };
 
