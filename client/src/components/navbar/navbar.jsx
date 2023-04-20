@@ -126,7 +126,7 @@ export default function Navbar() {
             <Link to="/contact">Contact</Link>
           </li>
           <li className="anchor">
-            <Link to="/admin"> Admin</Link>
+            <Link to="/login"> Admin</Link>
           </li>
         </div>
         <div className="nav-bg-fostrap">
