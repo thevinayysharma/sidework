@@ -16,22 +16,15 @@ const Login = ({ setIsLoggedIn }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const saltRounds = 10;
+  const saltRounds = 7;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
     const salt = await bcrypt.genSalt(saltRounds);
     const hashedPassword = await bcrypt.hash(password, salt);
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const { data } = await axios.post(
-        "/login",
-        { username, password: hashedPassword},
-        config
-      );
+    //todo brcypted salting
+      const { data } = await axios.post( "/login", { username, password });
+      // const response = await fetch("http://localhost:5001/razorpay", {
       console.log(data);
       localStorage.setItem("loggedInUser", JSON.stringify(data)); 
       setIsLoggedIn(true);

@@ -9,12 +9,15 @@ import morgan from "morgan";
 import { GridFsStorage } from "multer-gridfs-storage";
 import { MongoClient } from "mongodb";
 //import orderRoutes from "./routes/order.js";
+//import authRoutes from "./routes/user.js"
 import paymentRoutes from "./routes/payment.js";
 import path from "path";
 import Grid from "gridfs-stream";
 import methodOverride from "method-override";
 import crypto from "crypto";
 import Order from "./models/order.js";
+import User from "./models/user.js"
+import bcrypt from "bcryptjs";
 
 /* CONFIGURATION */
 dotenv.config();
@@ -31,6 +34,7 @@ app.use(methodOverride("_method"));
 /* ROUTES */
 //app.use("/order", orderRoutes);
 app.use("/payment", paymentRoutes);
+// app.use("/authRoutes", authRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000; //9000 backup port
@@ -63,10 +67,9 @@ conn.once("open", () => {
   gfs.collection("orders");
 });
 
-
 //Create storage engine
 const storage = new GridFsStorage({
-  url: mongoURI,
+  url: process.env.MONGO_URL,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {
@@ -157,7 +160,6 @@ app.post("/orders/create", upload.array("files", 3), async (req, res) => {
     });
 });
 
-
 /* GET:  ALL ORDERS */
 app.get("/orders", async (req, res) => {
   try {
@@ -170,87 +172,67 @@ app.get("/orders", async (req, res) => {
 });
 
 /* GET: DOWNLOAD ORDER FILE */
-app.get('/orders/:filename', async (req, res) => {
- 
+
+app.get("/orders/:filename", async (req, res) => {
   try {
-    const file = await gfs.files.findOne({ filename: req.params.filename });
-    console.log(file);
-    if (!file) {
-      return res.status(404).json({
-        err: 'No file exists'
-      });
-    }
-    res.set('Content-Type', file.contentType);
-    // res.set('Content-Disposition', `attachment; filename="${file.filename}"`);
-    res.set({
-      "Content-Disposition": `attachment; filename=${req.params.filename}`,
+    const orders = await Order.find({
+      files: { $elemMatch: { filename: req.params.filename } },
     });
-    const readStream = gfs.createReadStream({ filename: file.filename });
-    readStream.pipe(res);
-  } catch (error) {
-    console.log("Error downloading file", error);
-    res.sendStatus(404);
-  }
-});
-
-
-
-
-
-
-
-
-/* DELETE:  SINGLE ORDER */
-app.delete("/orders/:clientId", async (req, res) => {
-  const clientId = req.headers.clientId;
-  try {
-    const order = await Order.findOne({ clientId });
-    if (!order) {
-      return res.status(404).json({ message: "Order not found" });
+    if (!orders || orders.length === 0) {
+      return res.status(404).send("File not found in any order");
     }
-
-    const paymentAmount = order.paymentAmount; // store payment amount
-    // Delete the order by clientId
-    await Order.findOneAndDelete({ clientId });
-    // Update total sales by subtracting the payment amount of the deleted order
-    await Sales.updateOne({}, { $inc: { totalSales: -paymentAmount } });
-
-    res.json({ message: "Order and its related details deleted successfully" });
-  } catch (err) {
-    console.log(err.message);
-    res.status(500).json({ message: "Internal server error" });
+    // Here you can loop through the orders and send the file data for each order
+    // You can modify the response format as per your requirements
+    for (const order of orders) {
+      const file = order.files.find((f) => f.filename === req.params.filename);
+      if (file) {
+        res.set("Content-Type", file.contentType);
+        console.log(file);
+        res.send(file.data);
+        return;
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
   }
 });
 
-
-/* SALES:  TOTAL SALES */
-
-// Get total sales
-// app.get("/sales", async (req, res) => {
+// app.get('/orders/:filename', async (req, res) => {
 //   try {
-//     const result = await orders.aggregate([
-//       { $match: { paymentStatus: "paid" } },
-//       { $group: { _id: null, totalSales: { $sum: "$paymentAmount" } } },
-//     ]);
-//     const totalSales = result[0].totalSales;
-//     const salesOrder = new Order({
-//       clientId: "sales",
-//       paymentAmount: totalSales,
-//       paymentStatus: true,
-//     });
-//     await salesOrder.save();
-//     res.json(totalSales);
+//    const file = await db.orders.findOne({ files_id: req.params.filename });
+//     console.log(file);
+//     if (!file) {
+//       return res.status(404).json({ error: 'File not found' });
+//     }
+//     res.set('Content-Type', file.contentType);
+//     res.set('Content-Disposition', `attachment; filename="${file.filename}"`);
+//     const readStream = new stream.PassThrough();
+//     readStream.end(file.data.buffer);
+//     readStream.pipe(res);
 //   } catch (err) {
-//     console.log(err.message);
-//     res.status(500).json({ message: "Internal server error" });
+//     console.error(err);
+//     res.status(500).json({ error: 'Internal server error' });
 //   }
 // });
 
 
+// app.get('/orders/:filename', async (req, res) => {
+//   console.log(req.params.filename);
+//   try {
+//     const file = await orders.findOne({ filename: req.params.filename });
+//     console.log(file);
+//     const readStream = gfs.createReadStream(file.filename);
+//     readStream.pipe(res);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
+
 //USER
 
 /* GET:  SINGLE ORDER*/
-// Get single order
 app.get("/orders/:clientId", async (req, res) => {
   Order.find({ clientId: req.params.clientId })
     .populate("files")
@@ -261,4 +243,90 @@ app.get("/orders/:clientId", async (req, res) => {
       console.log(err.message);
       res.status(500).send("Server error");
     });
+});
+
+/* DELETE:  SINGLE ORDER */
+app.delete("/orders/:clientId", async (req, res) => {
+  const clientId = req.params.clientId;
+  try {
+    const order = await Order.findOne({ clientId });
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    const paymentAmount = order.paymentAmount; // store payment amount
+    // Delete the order by clientId
+    await Order.findOneAndDelete({ clientId });
+    // Update total sales by subtracting the payment amount of the deleted order
+    // Calculate total sales by summing up payment amount of all orders
+    const totalSales = await Order.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalSales: { $sum: "$paymentAmount" },
+        },
+      },
+    ]);
+
+    // await Sales.updateOne({}, { $inc: { totalSales: paymentAmount } });
+    res.status(200).json({ message: "Order and its related details deleted successfully" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+/* SALES:  TOTAL SALES */
+//get total amount from razopray maybe
+// const Razorpay = require('razorpay');
+
+// const rzp = new Razorpay({
+//   key_id: 'YOUR_KEY_ID',
+//   key_secret: 'YOUR_KEY_SECRET',
+// });
+
+// rzp.payments.all({ status: 'captured' }, (err, payments) => {
+//   if (err) {
+//     console.log(err);
+//     return res.status(500).json({ message: 'Internal server error' });
+//   }
+  
+//   const totalSales = payments.reduce((acc, payment) => acc + payment.amount, 0);
+//   res.json(totalSales);
+// });
+
+
+
+/* LOGIN: SINGLE LOGIN */
+app.post("/login", async (req, res) => {
+  console.log(req.body);
+
+  try {
+    const user = await User.findOne({ username: req.body.username }); // assuming the username is provided in the request body
+
+    if (!user) {
+      console.log("Invalid login credentials");
+      return res.status(401).json({ error: "Invalid login credentials" });
+    }
+
+    // const passwordMatches = await bcrypt.compare(
+    //   req.body.password,
+    //   user.password
+    // );
+    // if (!passwordMatches) {
+    //   console.log("Invalid login credentials");
+    //   return res.status(401).json({ error: "Invalid login credentials" });
+    // }
+
+    if (user.password !== req.body.password) {
+      console.log('Invalid login credentials');
+      return res.status(401).json({ error: 'Invalid login credentials' });
+    }
+
+    console.log("User authenticated:", user);
+    res.json(user);
+  } catch (err) {
+    console.log("Error finding user:", err);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 });

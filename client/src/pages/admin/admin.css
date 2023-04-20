@@ -2,6 +2,13 @@
   background: #f1f5f9;
 }
 
+.header-divs{
+  display:flex;
+  align-items:flex-start;
+  justify-content: center;
+  flex-direction: row;
+}
+
 .sales-info {
   margin: 15px;
   border-radius: 3px;
@@ -12,7 +19,7 @@
 
 .sales-info p {
   text-align: center;
-  padding: 10px 15px;
+  /* padding: 10px 15px; */
   font-weight: 500;
 }
 

@@ -112,10 +112,12 @@ const Admin = ({ handleLogout }) => {
   };
   return (
     <div className="adminContainer">
+      <div className="header-divs">
       <div className="sales-info">
         <p>Total Sales: INR {totalSales}</p>
       </div>
       <button onClick={handleLogout}>Logout</button>
+      </div>
       <div className="allcurrent-orders">
         <div className="order-toggle">
           <button onClick={toggleShowAllOrders}>
