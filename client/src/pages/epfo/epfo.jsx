@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./epfo.css";
-import epfoImg from "../../assets//epfoimg.jpg";
+import epfoImg from "../../assets/epfoimg.jpg";
 
 const EPFOConsulting = () => {
 

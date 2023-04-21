@@ -30,12 +30,12 @@ const initialValues = {
   files: [],
 };
 
-export default function PanForm() {
+export default function PanCorrection() {
   const [clientId, setclientId] = useState(null);
   const [dataSubmitted, setdataSubmitted] = useState(false);
 
   const navigate = useNavigate();
-  const refData = { amount: 200, clientId: clientId };
+  const refData = { amount: 249, clientId: clientId };
 
   //yup validation
   const validationSchema = Yup.object().shape({
@@ -95,7 +95,7 @@ export default function PanForm() {
     }
     formData.append("clientId", clientId);
     formData.append("amount", 200);
-    formData.append("work", "Apply New Pan");
+    formData.append("work", "Pan Correction");
     console.log(values);
     setSubmitting(false);
 
@@ -117,8 +117,8 @@ export default function PanForm() {
   return (
     <div className="form-container">
       <div className="form_title">
-        <h2>Apply new Pan</h2>
-        <p className="direction">Home → New Pan Card </p>
+        <h2>Pan Correction</h2>
+        <p className="direction">Home → Pan Correction </p>
         <p>
           Your OrderID: <span className="orderId">{clientId}</span>
         </p>

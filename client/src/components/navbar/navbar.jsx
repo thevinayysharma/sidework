@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 import docsimg from "../../assets/docsspacelogo.png";
-
 export default function Navbar() {
   const [showAadharMenu, setShowAadharMenu] = useState(false);
   const [showPanCardMenu, setShowPanCardMenu] = useState(false);
@@ -90,7 +89,7 @@ export default function Navbar() {
                   <Link to="/passport-apply">Apply New PassPort</Link>
                 </li>
                 <li>
-                  <Link to="/passport-correction">Passport Correction</Link>
+                  <Link to="/passport-renewal">Passport Renewal</Link>
                 </li>
               </ul>
             )}
@@ -108,7 +107,7 @@ export default function Navbar() {
                   <Link to="/license-apply">Apply New License</Link>
                 </li>
                 <li>
-                  <Link to="/license-correction">License Duplicate</Link>
+                  <Link to="/license-duplicate">License Duplicate</Link>
                 </li>
                 <li>
                   <Link to="/license-renewal">License Renewal</Link>
@@ -119,10 +118,10 @@ export default function Navbar() {
           <li className="anchor">
             <Link to="/orderDetails">Check Order</Link>
           </li>
-          <li className="anchor" href="#">
+          <li className="anchor">
             <Link to="/epfoConsulting">EPFO</Link>
           </li>
-          <li className="anchor" href="#">
+          <li className="anchor">
             <Link to="/contact">Contact</Link>
           </li>
           <li className="anchor">

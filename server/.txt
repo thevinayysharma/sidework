@@ -42,3 +42,16 @@ Seagull: #87CEEB   | pinkish
 Cosmos: #FFD8D8  | bluish
 
 react mongo_file_uploadshttps://codepen.io/wisnust10/pen/ZWERZK
+
+TODO:
+
+priority:
+A
+file download + payment integration
+
+B
+process env sorting 
+password strong
+
+C
+routing match 

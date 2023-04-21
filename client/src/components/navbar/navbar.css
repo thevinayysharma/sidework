@@ -68,7 +68,8 @@ a {
 }
 
 .anchor:hover {
-  background-color: #50839c;
+  /* background-color: #50839c; */
+  background-color: #f1f5f9;
   cursor: pointer;
 }
 
@@ -206,7 +207,8 @@ a {
   }
 
   .nav-fostrap li ul.dropdown li a {
-    background: #2980B9 !important;
+    /* background: #2980B9 !important; */
+      background-color: #f1f5f9;
     border-bottom: none;
     color: #fff !important;
   }
