@@ -94,7 +94,7 @@ export default function PanCorrection() {
       formData.append(key, values[key]);
     }
     formData.append("clientId", clientId);
-    formData.append("amount", 200);
+    formData.append("amount", 249);
     formData.append("work", "Pan Correction");
     console.log(values);
     setSubmitting(false);
@@ -279,7 +279,7 @@ export default function PanCorrection() {
                     name="myField"
                     type="text"
                     readOnly
-                    placeholder="₹ 200"
+                    placeholder="₹ 249"
                   />
                   <label htmlFor="price">Date</label>
                   <Field

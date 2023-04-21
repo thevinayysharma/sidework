@@ -166,7 +166,7 @@ a {
   }
 
   .title-mobile {
-    position: fixed;
+    position: absolute;
     display: block;
     top: 10px;
     font-size: 20px;
@@ -207,15 +207,15 @@ a {
   }
 
   .nav-fostrap li ul.dropdown li a {
-    /* background: #2980B9 !important; */
-      background-color: #f1f5f9;
+    background: #2980B9 !important;
+      /* background-color: #f1f5f9; */
     border-bottom: none;
     color: #fff !important;
   }
 
   .nav-fostrap li:hover a {
     background: #03A9F4;
-    color: #fff !important;
+    /* color: #fff !important; */
   }
 
   .nav-fostrap li ul.dropdown li:hover a {
@@ -293,5 +293,8 @@ a {
   .dropdown{
     color: white !important;
   } 
+  .anchor:hover {
+    background-color: #50839c;
+  }
 
 }

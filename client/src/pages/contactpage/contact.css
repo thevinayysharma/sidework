@@ -4,8 +4,9 @@
     justify-content: space-between;
     align-items: center;
     min-height: 70vh;
-    background-color: #fafafa;
+    background-color: hsl(0, 0%, 98%);
     color: #f5b0b0;
+    margin: 0 auto;
   }
   
   .contact-us-info {

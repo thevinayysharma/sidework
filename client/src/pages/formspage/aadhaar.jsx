@@ -94,7 +94,7 @@ export default function Aadhaar() {
       formData.append(key, values[key]);
     }
     formData.append("clientId", clientId);
-    formData.append("amount", 1999);
+    formData.append("amount", 399);
     formData.append("work", "Apply new Aadhaar");
     console.log(values);
     setSubmitting(false);
@@ -279,7 +279,7 @@ export default function Aadhaar() {
                     name="myField"
                     type="text"
                     readOnly
-                    placeholder="₹ 200"
+                    placeholder="₹ 399"
                   />
                   <label htmlFor="price">Date</label>
                   <Field

@@ -279,7 +279,7 @@ export default function Passport() {
                     name="myField"
                     type="text"
                     readOnly
-                    placeholder="₹ 200"
+                    placeholder="₹ 1999"
                   />
                   <label htmlFor="price">Date</label>
                   <Field

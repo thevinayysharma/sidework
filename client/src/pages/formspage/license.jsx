@@ -279,7 +279,7 @@ export default function License() {
                     name="myField"
                     type="text"
                     readOnly
-                    placeholder="₹ 200"
+                    placeholder="₹ 699"
                   />
                   <label htmlFor="price">Date</label>
                   <Field

@@ -121,7 +121,7 @@ const Admin = ({ handleLogout }) => {
       <div className="allcurrent-orders">
         <div className="order-toggle">
           <button onClick={toggleShowAllOrders}>
-            {showOrders ? "Hide All Orders" : "Show All Orders"}
+            {showOrders ? "Hide Orders" : "Show Orders"}
           </button>
         </div>
         {showOrders && (

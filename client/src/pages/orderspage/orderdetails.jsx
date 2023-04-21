@@ -80,7 +80,7 @@ function OrderDetails() {
         ))
       ) :  (
         <>
-          {!fileExist && <img src={nofileimg} alt="File not found" />}
+          {/* {!fileExist && <img src={nofileimg} alt="File not found" />} */}
           {fileExist && (
             <p className="ordercheck-message">
               Find your form and payment details.
