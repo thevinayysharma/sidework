@@ -233,7 +233,7 @@ app.get("/orders/:filename", async (req, res) => {
 //USER
 
 /* GET:  SINGLE ORDER*/
-app.get("/orders/:clientId", async (req, res) => {
+app.get("/orders/single/:clientId", async (req, res) => {
   Order.find({ clientId: req.params.clientId })
     .populate("files")
     .then((order) => {

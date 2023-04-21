@@ -17,7 +17,7 @@ function OrderDetails() {
     setLoading(true);
 
     try {
-      const response = await axios.get(`/orders/${clientId}`);
+      const response = await axios.get(`/orders/single/${clientId}`);
       const data = response.data;
       console.log(data);
       if (data && data.length > 0) {
@@ -80,7 +80,7 @@ function OrderDetails() {
         ))
       ) :  (
         <>
-          {/* {!fileExist && <img src={nofileimg} alt="File not found" />} */}
+          {!fileExist && <img src={nofileimg} alt="File not found" />}
           {fileExist && (
             <p className="ordercheck-message">
               Find your form and payment details.
