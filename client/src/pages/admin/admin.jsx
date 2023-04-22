@@ -20,7 +20,7 @@ const Admin = ({ handleLogout }) => {
 
         const ordersResponse = await axios.get("/orders");
         setCurrentOrders(ordersResponse.data);
-        console.log(ordersResponse);
+        // console.log(ordersResponse);
       } catch (error) {
         console.log(error);
       }
@@ -36,13 +36,47 @@ const Admin = ({ handleLogout }) => {
     setSelectedOrder(selectedOrder === order ? null : order);
   };
 
+  function downloadFile(filename) {
+    const url = `/download/${filename}`;
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        console.log(blob);
+        const fileType = getFileTypeFromExtension(filename);
+        const fileName = filename;
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.type = fileType;
+        link.click();
+      })
+      .catch((error) => {
+        console.error('Error while downloading file:', error);
+      });
+  }
+  
+  function getFileTypeFromExtension(filename) {
+    const extension = filename.split(".").pop().toLowerCase();
+    switch (extension) {
+      case "png":
+        return "image/png";
+      case "jpg":
+      case "jpeg":
+        return "image/jpeg";
+      case "pdf":
+        return "application/pdf";
+      default:
+        return "";
+    }
+  }
+  
 
   // function downloadFile(filename) {
-  //   const url = `${REACT_APP_API_URL}/orders/${filename}`;
-  
+  //   const url = `/download/${filename}`;
   //   fetch(url)
   //     .then((response) => response.blob())
   //     .then((blob) => {
+  //       console.log(blob);
   //       const fileName = filename;
   //       const link = document.createElement("a");
   //       link.href = URL.createObjectURL(blob);
@@ -53,47 +87,13 @@ const Admin = ({ handleLogout }) => {
   //       console.error('Error while downloading file:', error);
   //     });
   // }
-  function downloadFile(filename) {
-    
-  fetch(`/orders/${filename}`)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("File not found");
-    }
-    return response.blob();
-  })
-  .then(blob => {
-    console.log(blob);
-    const objectUrl = URL.createObjectURL(blob);
-    const downloadLink = document.createElement("a");
-    downloadLink.href = objectUrl;
-    downloadLink.download = filename;
-    downloadLink.click();
-  })
-  .catch(error => {
-    console.error(error);
-    const errorMessage = document.createElement("p");
-    errorMessage.innerText = "File not found";
-    document.body.appendChild(errorMessage);
-  });
-  }
+
   
-  // function downloadFile(filename) {
-  //   axios({
-  //     method: "GET",
-  //     url: `${REACT_APP_API_URL}/orders/${filename}`,
-  //     responseType: "blob",
-  //   })
-  //     .then((response) => {
-  //       FileSaver.saveAs(response.data, "file");
-  //     })
-  //     .then(() => {
-  //       console.log("Completed");
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+
+
+  
+
+
 
   const deleteUser = async (clientId) => {
     try {

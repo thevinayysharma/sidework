@@ -13,7 +13,7 @@ function Banner() {
         <div >
           <p className="bantext">The document service platform, built for all your needs</p>
           <p className="description">Effortlessly apply online for documents, with speedy process checkouts. </p>
-          <button className="checkout">Apply today</button>
+          <button className="checkout">Apply today </button>
         </div>
        
         <div className="collage-container">

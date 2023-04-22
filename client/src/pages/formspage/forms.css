@@ -146,7 +146,7 @@
     
   button {
     max-width: 150px;
-    margin: 20px 0;
+    margin: 20px 0px;
     padding: 12px 20px;
     border-style: none;
     border-radius: 5px;
@@ -164,9 +164,9 @@
     cursor: not-allowed !important;
   }
   
-  button + button {
+  /* button + button {
     margin-left: .5rem;
-  }
+  } */
   
   button.outline {
     background-color: #eee;
