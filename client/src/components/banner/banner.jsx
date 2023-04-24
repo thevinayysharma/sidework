@@ -10,9 +10,9 @@ function Banner() {
       <div className="bannercontainer">
       <div className="flex-container1">
        
-        <div >
+        <div className="bantext-container">
           <p className="bantext">The document service platform, built for all your needs</p>
-          <p className="description">Effortlessly apply online for documents, with speedy process checkouts. </p>
+          <p className="description">Effortlessly apply online for documents, with Zero Login & speedy process checkouts. </p>
           <button className="checkout">Apply today </button>
         </div>
        
