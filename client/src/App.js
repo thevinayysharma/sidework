@@ -16,8 +16,8 @@ import TermsandConditions from "./pages/t&c";
 // pages
 import Pan from "./pages/formspage/pan";
 import PanCorrection from "./pages/formspage/panCorrection";
-import Aadhaar from "./pages/formspage/aadhaar";
-import AadhaarCorrrection from "./pages/formspage/aadhaarCorrection";
+import RC from "./pages/formspage/rc";
+import RCCorrrection from "./pages/formspage/rcCorrection";
 import License from "./pages/formspage/license";
 import LicenseRenewal from "./pages/formspage/licenseRenewal";
 import LicenseDuplicate from "./pages/formspage/licenseDuplicate";
@@ -47,8 +47,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
 
-          <Route path="/aadhaar-apply" element={<Aadhaar />} />
-          <Route path="/aadhaar-correction" element={<AadhaarCorrrection />} />
+          <Route path="/rc-apply" element={<RC />} />
+          <Route path="/rc-correction" element={<RCCorrrection />} />
 
           <Route path="/license-apply" element={<License />} />
           <Route path="/license-duplicate" element={<LicenseDuplicate />} />

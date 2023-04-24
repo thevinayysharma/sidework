@@ -87,13 +87,13 @@ export default function Navbar() {
             {showLicenseMenu && (
               <ul className="dropdown">
                 <li>
-                  <Link to="/license-apply">Apply New License</Link>
+                  <Link to="/license-apply">Apply New Driving License</Link>
                 </li>
                 <li>
-                  <Link to="/license-duplicate">Issue of Duplicate DL</Link>
+                  <Link to="/license-duplicate">Issue of Duplicate Driving License</Link>
                 </li>
                 <li>
-                  <Link to="/license-renewal">Change of Address in DL</Link>
+                  <Link to="/license-renewal">Change of Address in Driving License</Link>
                 </li>
               </ul>
             )}

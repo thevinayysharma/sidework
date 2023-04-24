@@ -140,10 +140,12 @@ const Admin = ({ handleLogout }) => {
                   </p>
                   {selectedOrder === order && (
                     <div>
+                      {order.pan && <p>PAN_No: {order.pan}</p>}
+                      {order.aadhaar && <p>AADHAR_No: {order.aadhaar}</p>}
                       <p>Work: {order.work}</p>
                       <p>First Name: {order.firstName}</p>
                       <p>Last Name: {order.lastName}</p>
-                      <p>Middle Name: {order.middleName}</p>
+                      {order.middleName && <p>Middle Name: {order.middleName}</p>}
                       <p>DoB: {order.dob}</p>
                       <p>Gender: {order.gender}</p>
                       <p>Email: {order.email}</p>

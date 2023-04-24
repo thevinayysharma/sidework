@@ -47,7 +47,7 @@ TODO:
 
 priority:
 A
-file download + payment integration
+ payment integration
 
 B
 process env sorting 
