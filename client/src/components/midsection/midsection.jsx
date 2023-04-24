@@ -3,7 +3,7 @@ import "./midsection.css";
 import msoneimagebg from "../../assets/msimage.png";
 import workimg from "../../assets/work_image.png";
 // ICONS
-import aadharIcon from "../../assets/icons/aadhaar.png";
+import rcIcon from "../../assets/icons/rc.jpeg";
 import panIcon from "../../assets/icons/pan.jpg";
 import passportIcon from "../../assets/icons/passport.jpg";
 import dlIcon from "../../assets/icons/license.png";
@@ -19,22 +19,7 @@ function MidSection() {
           Avail lots of services, from Consulting to applying documents!
         </p>
         <div className="card-container">
-          <div className="card">
-            <div className="imageIcon">
-              <img id="imge" src={aadharIcon} alt="yo" />
-            </div>
-            <div className="title">
-              <p className="text">AADHAR</p>
-              <ul className="list-unstyled">
-                <li>
-                  <span className="arrow"> &#9733; </span>Apply new Aadhar
-                </li>
-                <li>
-                  <span className="arrow"> &#9733; </span>Aadhar Correction{" "}
-                </li>
-              </ul>
-            </div>
-          </div>
+          
 
           <div className="card">
             <div className="imageIcon">
@@ -48,6 +33,23 @@ function MidSection() {
                 </li>
                 <li>
                   <span className="arrow"> &#9733; </span>Pan Correction{" "}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="imageIcon">
+              <img id="imge" src={rcIcon} alt="yo" />
+            </div>
+            <div className="title">
+              <p className="text">Vehicle RC</p>
+              <ul className="list-unstyled">
+                <li>
+                  <span className="arrow"> &#9733; </span>Apply new vehicle RC
+                </li>
+                <li>
+                  <span className="arrow"> &#9733; </span>Duplicate RC{" "}
                 </li>
               </ul>
             </div>
