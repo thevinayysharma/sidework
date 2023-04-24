@@ -42,7 +42,9 @@ export default function LicenseDuplicate() {
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
     middleName: Yup.string().notRequired(),
-    dob: Yup.date().required("Required dob"),
+    dob: Yup.string()
+    .matches(/^\d{2}-\d{2}-\d{4}$/, "Invalid date format, use dd-mm-yyyy")
+    .required("Required dob"),
     gender: Yup.string().oneOf(["male", "female"]).required("Required Gender"),
     email: Yup.string()
       .email("Invalid email addresss")
@@ -180,7 +182,7 @@ export default function LicenseDuplicate() {
 
                 <div>
                   <label htmlFor="dob">Date of Birth</label>
-                  <Field name="dob" type="date" />
+                  <Field name="dob" placeholder="dd-mm-yyyy" inputMode="numeric"/>
                   <ErrorMessage component="div" className="error" name="dob" />
                 </div>
 

@@ -39,10 +39,13 @@ export default function PanCorrection() {
 
   //yup validation
   const validationSchema = Yup.object().shape({
+    pan: Yup.string().matches(/^[A-Z0-9]{10}$/, "Invalid PAN number").required("Required PAN number"),
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
     middleName: Yup.string().notRequired(),
-    dob: Yup.date().required("Required dob"),
+    dob: Yup.string()
+    .matches(/^\d{2}-\d{2}-\d{4}$/, 'Invalid date format, use dd-mm-yyyy')
+    .required('Required dob'),
     gender: Yup.string().oneOf(["male", "female"]).required("Required Gender"),
     email: Yup.string()
       .email("Invalid email addresss")
@@ -149,6 +152,23 @@ export default function PanCorrection() {
             }) => (
               <Form encType="multipart/form-data" onSubmit={handleSubmit}>
                 <div>
+                  <label htmlFor="pan">PAN Number</label>
+                  <Field
+                    name="pan"
+                    type="text"
+                    placeholder="10 DIGIT PAN NUMBER"
+                    maxLength={10}
+                    onKeyPress={(e) => {
+                      const allowedChars =
+                        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                      if (!allowedChars.includes(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
+                  />
+                  <ErrorMessage component="div" className="error" name="pan" />
+                </div>
+                <div>
                   <label htmlFor="firstName">First Name</label>
                   <Field name="firstName" type="text" />
                   <ErrorMessage
@@ -180,7 +200,7 @@ export default function PanCorrection() {
 
                 <div>
                   <label htmlFor="dob">Date of Birth</label>
-                  <Field name="dob" type="date" />
+                  <Field name="dob" placeholder="dd-mm-yyyy" inputMode="numeric" />
                   <ErrorMessage component="div" className="error" name="dob" />
                 </div>
 

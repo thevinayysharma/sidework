@@ -30,7 +30,7 @@ const initialValues = {
   files: [],
 };
 
-export default function Passport() {
+export default function RcCorrection() {
   const [clientId, setclientId] = useState(null);
   const [dataSubmitted, setdataSubmitted] = useState(false);
 
@@ -43,8 +43,8 @@ export default function Passport() {
     lastName: Yup.string().required("Required"),
     middleName: Yup.string().notRequired(),
     dob: Yup.string()
-  .matches(/^\d{2}-\d{2}-\d{4}$/, 'Invalid date format, use dd-mm-yyyy')
-  .required('Required dob'),
+    .matches(/^\d{2}-\d{2}-\d{4}$/, "Invalid date format, use dd-mm-yyyy")
+    .required("Required dob"),
     gender: Yup.string().oneOf(["male", "female"]).required("Required Gender"),
     email: Yup.string()
       .email("Invalid email addresss")
@@ -78,7 +78,7 @@ export default function Passport() {
         }
         return true;
       }),
-    comments: Yup.string().notRequired(),
+    comments: Yup.string().required("required aadhar number"),
   });
 
   useEffect(() => {
@@ -96,8 +96,8 @@ export default function Passport() {
       formData.append(key, values[key]);
     }
     formData.append("clientId", clientId);
-    formData.append("amount", 1999);
-    formData.append("work", "Apply new Passport");
+    formData.append("amount", 399);
+    formData.append("work", "RC Correction- change of address");
     console.log(values);
     setSubmitting(false);
 
@@ -119,8 +119,8 @@ export default function Passport() {
   return (
     <div className="form-container">
       <div className="form_title">
-        <h2>Apply new Passport</h2>
-        <p className="direction">Home → New Passport </p>
+        <h2>RC Correction</h2>
+        <p className="direction">Home → RC Correction (change of address) </p>
         <p>
           Your OrderID: <span className="orderId">{clientId}</span>
         </p>
@@ -182,7 +182,7 @@ export default function Passport() {
 
                 <div>
                   <label htmlFor="dob">Date of Birth</label>
-                  <Field name="dob" placeholder="dd-mm-yyyy" inputMode="numeric" />
+                  <Field name="dob" placeholder="dd-mm-yyyy" inputMode="numeric"/>
                   <ErrorMessage component="div" className="error" name="dob" />
                 </div>
 
@@ -243,8 +243,8 @@ export default function Passport() {
                 </div>
                 <div>
                   <label htmlFor="comments">Comments (Any Message)</label>
-                  <Field name="comments" type="text" as="textarea" />
-                  <ErrorMessage name="comments" />
+                  <Field name="comments" type="text" as="textarea" placeholder="Your 12 digit Aadhar Number" />
+                  <ErrorMessage component="div" className="error" name="comments" />
                 </div>
                 <p id="declrtn"> DECLARATION and TERMS OF SERVICE</p>
                 <div className="terms-container">
@@ -281,7 +281,7 @@ export default function Passport() {
                     name="myField"
                     type="text"
                     readOnly
-                    placeholder="₹ 1999"
+                    placeholder="₹ 399"
                   />
                   <label htmlFor="price">Date</label>
                   <Field
