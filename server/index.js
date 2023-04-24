@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import { GridFsStorage } from "multer-gridfs-storage";
-import { MongoClient } from "mongodb";
+import { MongoClient, GridFSBucket } from "mongodb";
 //import orderRoutes from "./routes/order.js";
 //import authRoutes from "./routes/user.js"
 import paymentRoutes from "./routes/payment.js";
@@ -16,8 +16,10 @@ import Grid from "gridfs-stream";
 import methodOverride from "method-override";
 import crypto from "crypto";
 import Order from "./models/order.js";
-import User from "./models/user.js"
+import User from "./models/user.js";
+import mongodb from  "mongodb";
 import bcrypt from "bcryptjs";
+import { appendTo } from "cheerio/lib/api/manipulation.js";
 
 /* CONFIGURATION */
 dotenv.config();
@@ -69,7 +71,7 @@ conn.once("open", () => {
 
 //Create storage engine
 const storage = new GridFsStorage({
-  url: process.env.MONGO_URL,
+  url: mongoURI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
       crypto.randomBytes(16, (err, buf) => {
@@ -153,7 +155,7 @@ app.post("/orders/create", upload.array("files", 3), async (req, res) => {
         console.log("Multer_Error_occured:", err);
       } else if (err) {
         res.status(500).json({
-          error: error,
+          error: err,
         });
         console.log(err.message); // An unknown error occurred when uploading.
       }
@@ -172,63 +174,24 @@ app.get("/orders", async (req, res) => {
 });
 
 /* GET: DOWNLOAD ORDER FILE */
-
-app.get("/orders/:filename", async (req, res) => {
+app.get("/download/:filename", async (req, res) => {
   try {
-    const orders = await Order.find({
-      files: { $elemMatch: { filename: req.params.filename } },
+    const client = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+    const db = client.db("computerzonedb");
+    const bucket = new mongodb.GridFSBucket(db, { bucketName: 'orders' });
+    const downloadStream = bucket.openDownloadStreamByName(req.params.filename);
+    downloadStream.on("error", (err) => {
+      console.log("Error occurred while downloading the file.", err);
+      res.status(500).send("Internal Server Error");
     });
-    if (!orders || orders.length === 0) {
-      return res.status(404).send("File not found in any order");
-    }
-    // Here you can loop through the orders and send the file data for each order
-    // You can modify the response format as per your requirements
-    for (const order of orders) {
-      const file = order.files.find((f) => f.filename === req.params.filename);
-      if (file) {
-        res.set("Content-Type", file.contentType);
-        console.log(file);
-        res.send(file.data);
-        return;
-      }
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal server error");
+    // res.set("Content-Type", "image/png");
+    downloadStream.pipe(res);
+  } catch (err) {
+    console.log("An error occurred while downloading the file.", err);
+    res.status(500).send("Internal Server Error");
   }
 });
 
-// app.get('/orders/:filename', async (req, res) => {
-//   try {
-//    const file = await db.orders.findOne({ files_id: req.params.filename });
-//     console.log(file);
-//     if (!file) {
-//       return res.status(404).json({ error: 'File not found' });
-//     }
-//     res.set('Content-Type', file.contentType);
-//     res.set('Content-Disposition', `attachment; filename="${file.filename}"`);
-//     const readStream = new stream.PassThrough();
-//     readStream.end(file.data.buffer);
-//     readStream.pipe(res);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
-
-
-// app.get('/orders/:filename', async (req, res) => {
-//   console.log(req.params.filename);
-//   try {
-//     const file = await orders.findOne({ filename: req.params.filename });
-//     console.log(file);
-//     const readStream = gfs.createReadStream(file.filename);
-//     readStream.pipe(res);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
 
 //USER
 
@@ -269,7 +232,9 @@ app.delete("/orders/:clientId", async (req, res) => {
     ]);
 
     // await Sales.updateOne({}, { $inc: { totalSales: paymentAmount } });
-    res.status(200).json({ message: "Order and its related details deleted successfully" });
+    res
+      .status(200)
+      .json({ message: "Order and its related details deleted successfully" });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({ message: "Internal server error" });
@@ -290,12 +255,10 @@ app.delete("/orders/:clientId", async (req, res) => {
 //     console.log(err);
 //     return res.status(500).json({ message: 'Internal server error' });
 //   }
-  
+
 //   const totalSales = payments.reduce((acc, payment) => acc + payment.amount, 0);
 //   res.json(totalSales);
 // });
-
-
 
 /* LOGIN: SINGLE LOGIN */
 app.post("/login", async (req, res) => {
@@ -319,8 +282,8 @@ app.post("/login", async (req, res) => {
     // }
 
     if (user.password !== req.body.password) {
-      console.log('Invalid login credentials');
-      return res.status(401).json({ error: 'Invalid login credentials' });
+      console.log("Invalid login credentials");
+      return res.status(401).json({ error: "Invalid login credentials" });
     }
 
     console.log("User authenticated:", user);
