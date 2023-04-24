@@ -40,24 +40,7 @@ export default function Navbar() {
           <li className="anchor">
             <Link to="/">Home</Link>
           </li>
-          <li
-            className="anchor"
-            onMouseEnter={handleAadharMenu}
-            onMouseLeave={handleAadharMenu}
-          >
-            Aadhaar
-            <span className="arrow-down"></span>
-            {showAadharMenu && (
-              <ul className="dropdown">
-                <li>
-                  <Link to="/aadhaar-apply">Apply New Aadhaar</Link>
-                </li>
-                <li>
-                  <Link to="/aadhaar-correction">Aadhaar Correction</Link>
-                </li>
-              </ul>
-            )}
-          </li>
+          
           <li
             className="anchor"
             onMouseEnter={handlePanCardMenu}
@@ -86,7 +69,7 @@ export default function Navbar() {
             {showPassportMenu && (
               <ul className="dropdown">
                 <li>
-                  <Link to="/passport-apply">Apply New PassPort</Link>
+                  <Link to="/passport-apply">Apply For Fresh PassPort</Link>
                 </li>
                 <li>
                   <Link to="/passport-renewal">Passport Renewal</Link>
@@ -107,26 +90,45 @@ export default function Navbar() {
                   <Link to="/license-apply">Apply New License</Link>
                 </li>
                 <li>
-                  <Link to="/license-duplicate">License Duplicate</Link>
+                  <Link to="/license-duplicate">Issue of Duplicate DL</Link>
                 </li>
                 <li>
-                  <Link to="/license-renewal">License Renewal</Link>
+                  <Link to="/license-renewal">Change of Address in DL</Link>
+                </li>
+              </ul>
+            )}
+          </li>
+          <li
+            className="anchor"
+            onMouseEnter={handleAadharMenu}
+            onMouseLeave={handleAadharMenu}
+          >
+            Vehicle RC
+            <span className="arrow-down"></span>
+            {showAadharMenu && (
+              <ul className="dropdown">
+                <li>
+                  <Link to="/rc-apply">Apply Registration Certificate (RC)</Link>
+                </li>
+                <li>
+                  <Link to="/rc-correction">Change of Address in RC</Link>
                 </li>
               </ul>
             )}
           </li>
           <li className="anchor">
-            <Link to="/orderDetails">Check Order</Link>
+            <Link to="/epfoConsulting">Epfo</Link>
           </li>
           <li className="anchor">
-            <Link to="/epfoConsulting">EPFO</Link>
+            <Link to="/orderDetails">Check Order</Link>
           </li>
+          
           <li className="anchor">
             <Link to="/contact">Contact</Link>
           </li>
-          <li className="anchor">
+          {/* <li className="anchor">
             <Link to="/login"> Admin</Link>
-          </li>
+          </li> */}
         </div>
         <div className="nav-bg-fostrap">
           {/* <div className="navbar-fostrap" onClick={handleClick}> */}
