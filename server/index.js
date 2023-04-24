@@ -136,6 +136,7 @@ app.post("/orders/create", upload.array("files", 3), async (req, res) => {
     phone: req.body.phone,
     amount: req.body.amount,
     work: req.body.work,
+    pan: req.body?.pan,
     files: files,
   });
   order.paymentStatus = "pending";
