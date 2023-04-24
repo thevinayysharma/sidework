@@ -24,7 +24,7 @@ const formSchema = new mongoose.Schema(
       default: "",
     },
     dob: {
-      type: Date,
+      type: String,
       required: true,
       trim: true,
     },
@@ -55,6 +55,11 @@ const formSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    pan: {
+      type: String,
+      required: true,
+      trim: true,
+    },    
     paymentStatus: {
       type: String,
       default: "pending",
