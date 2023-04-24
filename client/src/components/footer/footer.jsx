@@ -16,7 +16,7 @@ export default function Footer() {
                 <div className="cta-text">
                   <h4>Find us</h4>
                   <span>
-                    Kotla Mubarkapur, Delhi - 110003{" "}
+                  1484, babu park, kotla Mubarakpur, New Delhi 110003{" "}
                   </span>
                 </div>
               </div>
@@ -26,7 +26,7 @@ export default function Footer() {
                 <i className="fas fa-phone"></i>
                 <div className="cta-text">
                   <h4>Call us</h4>
-                  <span>+91 1234567890</span>
+                  <span>+91 9650673487</span>
                 </div>
               </div>
             </div>
@@ -35,7 +35,7 @@ export default function Footer() {
                 <i className="far fa-envelope-open"></i>
                 <div className="cta-text">
                   <h4>Mail us</h4>
-                  <span>contact@gmail.com</span>
+                  <span>ecafeindiahub@gmail.com</span>
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@ export default function Footer() {
                 </div>
                 <div className="footer-text">
                   <p>
-                    Docspace aids in applying to all sort of government services
+                    eCafeIndia aids in applying to various government documents
                     in an easy and conveninent way{" "}
                   </p>
                 </div>
@@ -93,29 +93,25 @@ export default function Footer() {
                   <h3>Useful Links</h3>
                 </div>
                 <ul>
-                  <li>
-                    <a href="#">Our Team</a>
+                <li>
+                  <Link to="/contact">Contact Us</Link>
                   </li>
                   <li>
                     <a href="#">About Us</a>
                   </li>
                   <li>
-                    <a href="#">Our Gallery</a>
+                    <a href="#">Blog</a>
                   </li>
                   <li>
-                    <a href="#">Selection Process</a>
+                    <a href="#">Privacy Policy</a>
                   </li>
                   <li>
-                    <a href="#">FAQ</a>
+                  <Link to="/t&c">T&c</Link>
                   </li>
                   <li>
-                    <a href="#">Our Policies</a>
-                  </li>
                   <li>
-                    <a href="#">Our Team</a>
+                      <Link to="/login">Admin</Link>
                   </li>
-                  <li>
-                  <Link to="/contact">Contact Us</Link>
                   </li>
                 </ul>
               </div>
@@ -127,8 +123,8 @@ export default function Footer() {
                 </div>
                 <div className="footer-text mb-25">
                   <p>
-                    EEmail us right await and let us know how we can help you, kindly fill the
-                    form below.
+                    Email us right await and let us know how we can help you. kindly fill the
+                    submission form below.
                   </p>
                 </div>
                 <div className="subscribe-form">
@@ -147,33 +143,12 @@ export default function Footer() {
       <div className="copyright-area">
         <div className="container">
           <div className="row">
-            <div className="col-xl-6 col-lg-6 text-center text-lg-left">
+            <div className="col-xl-12 col-lg-12 text-center text-lg-center">
               <div className="copyright-text">
                 <p>
                   Copyright &copy; 2023, All Right Reserved{" "}
-                  <a href="#">DocsSpace</a>
+                  <a href="#">eCafeIndia</a>
                 </p>
-              </div>
-            </div>
-            <div className="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-              <div className="footer-menu">
-                <ul>
-                  <li>
-                    <a href="#">Home</a>
-                  </li>
-                  <li>
-                    <a href="#">Terms</a>
-                  </li>
-                  <li>
-                    <a href="#">Privacy</a>
-                  </li>
-                  <li>
-                    <a href="#">Policy</a>
-                  </li>
-                  <li>
-                    <a href="#">Contact</a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
