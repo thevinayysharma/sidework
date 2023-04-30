@@ -2,9 +2,12 @@ import React from "react";
 import "./footer.css";
 import docsimg from "../../assets/docsspacelogo.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // import Logo from "../assets/logo.png"
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <div className="footerContainer">
     <div className="footer-section">
@@ -16,7 +19,7 @@ export default function Footer() {
                 <div className="cta-text">
                   <h4>Find us</h4>
                   <span>
-                  1484, babu park, kotla Mubarakpur, New Delhi 110003{" "}
+                  {t("1484, babu park, kotla Mubarakpur, New Delhi 110003")}{" "}
                   </span>
                 </div>
               </div>
@@ -25,7 +28,7 @@ export default function Footer() {
               <div className="single-cta">
                 <i className="fas fa-phone"></i>
                 <div className="cta-text">
-                  <h4>Call us</h4>
+                  <h4>{t("Call us")}</h4>
                   <span>+91 9650673487</span>
                 </div>
               </div>
@@ -34,7 +37,7 @@ export default function Footer() {
               <div className="single-cta">
                 <i className="far fa-envelope-open"></i>
                 <div className="cta-text">
-                  <h4>Mail us</h4>
+                  <h4>{t("Mail us")}</h4>
                   <span>ecafeindiahub@gmail.com</span>
                 </div>
               </div>
@@ -56,12 +59,11 @@ export default function Footer() {
                 </div>
                 <div className="footer-text">
                   <p>
-                    eCafeIndia aids in applying to various government documents
-                    in an easy and conveninent way{" "}
+                  {t("eCafeIndia aids in applying to various government documents in an easy and conveninent way")}
                   </p>
                 </div>
                 <div className="footer-social-icon">
-                  <span>Follow us</span>
+                  <span>{t("Follow us")}</span>
                   <ul className="social_icon">
                     <li>
                       <a href="#">
@@ -94,23 +96,23 @@ export default function Footer() {
                 </div>
                 <ul>
                 <li>
-                  <Link to="/contact">Contact Us</Link>
+                  <Link to="/contact">{t("Contact Us")}</Link>
                   </li>
                   <li>
-                    <a href="#">About Us</a>
+                    <a href="#">{t("About Us")}</a>
                   </li>
                   <li>
-                    <a href="#">Blog</a>
+                    <a href="#">{t("Blog")}</a>
                   </li>
                   <li>
-                    <a href="#">Privacy Policy</a>
+                    <a href="#">{t("Privacy Policy")}</a>
                   </li>
                   <li>
-                  <Link to="/t&c">T&c</Link>
+                  <Link to="/t&c">{t("T&c")}</Link>
                   </li>
                   <li>
                   <li>
-                      <Link to="/login">Admin</Link>
+                      <Link to="/login">{t("Admin")}</Link>
                   </li>
                   </li>
                 </ul>
@@ -119,12 +121,11 @@ export default function Footer() {
             <div className="col-xl-4 col-lg-4 col-md-6 mb-50">
               <div className="footer-widget">
                 <div className="footer-widget-heading">
-                  <h3>Have a Query ?</h3>
+                  <h3>{t("Have a Query ?")}</h3>
                 </div>
                 <div className="footer-text mb-25">
                   <p>
-                    Email us right await and let us know how we can help you. kindly fill the
-                    submission form below.
+                  {t("Email us right await and let us know how we can help you. kindly fill the submission form below.")}
                   </p>
                 </div>
                 <div className="subscribe-form">

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation} from "react-i18next";
 import "./navbar.css";
 import docsimg from "../../assets/docsspacelogo.png";
 export default function Navbar() {
@@ -8,6 +9,8 @@ export default function Navbar() {
   const [showPassportMenu, setShowPassportMenu] = useState(false);
   const [showLicenseMenu, setShowLicenseMenu] = useState(false);
   const [clicked, setClicked] = useState(false);
+
+  const { t } = useTranslation();
 
   const handleAadharMenu = () => {
     setShowAadharMenu(!showAadharMenu);
@@ -38,23 +41,23 @@ export default function Navbar() {
             <img src={docsimg} alt="Logo" />'
           </div>
           <li className="anchor">
-            <Link to="/">Home</Link>
+            <Link to="/">{t("Home")}</Link>
           </li>
-          
+
           <li
             className="anchor"
             onMouseEnter={handlePanCardMenu}
             onMouseLeave={handlePanCardMenu}
           >
-            Pan Card
+            {t("Pan Card")}
             <span className="arrow-down"></span>
             {showPanCardMenu && (
               <ul className="dropdown">
                 <li>
-                  <Link to="/pan-apply">Apply New Pan</Link>
+                  <Link to="/pan-apply">{t("Apply New Pan")}</Link>
                 </li>
                 <li>
-                  <Link to="/pan-correction">Pan Card Correction</Link>
+                  <Link to="/pan-correction">{t("Pan Card Correction")}</Link>
                 </li>
               </ul>
             )}
@@ -64,15 +67,17 @@ export default function Navbar() {
             onMouseEnter={handlePassportMenu}
             onMouseLeave={handlePassportMenu}
           >
-            PassPort
+            {t("Passport")}
             <span className="arrow-down"></span>
             {showPassportMenu && (
               <ul className="dropdown">
                 <li>
-                  <Link to="/passport-apply">Apply For Fresh PassPort</Link>
+                  <Link to="/passport-apply">
+                    {t("Apply For Fresh Passport")}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/passport-renewal">Passport Renewal</Link>
+                  <Link to="/passport-renewal">{t("Passport Renewal")}</Link>
                 </li>
               </ul>
             )}
@@ -82,18 +87,24 @@ export default function Navbar() {
             onMouseEnter={handleLicenseMenu}
             onMouseLeave={handleLicenseMenu}
           >
-            License
+            {t("License")}
             <span className="arrow-down"></span>
             {showLicenseMenu && (
               <ul className="dropdown">
                 <li>
-                  <Link to="/license-apply">Apply New Driving License</Link>
+                  <Link to="/license-apply">
+                    {t("Apply New Driving License")}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/license-duplicate">Issue of Duplicate Driving License</Link>
+                  <Link to="/license-duplicate">
+                    {t("Issue Of Duplicate Driving License")}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/license-renewal">Change of Address in Driving License</Link>
+                  <Link to="/license-renewal">
+                    {t("Change Of Address In Driving License")}
+                  </Link>
                 </li>
               </ul>
             )}
@@ -103,28 +114,32 @@ export default function Navbar() {
             onMouseEnter={handleAadharMenu}
             onMouseLeave={handleAadharMenu}
           >
-            Vehicle RC
+            {t("Vehicle RC")}
             <span className="arrow-down"></span>
             {showAadharMenu && (
               <ul className="dropdown">
                 <li>
-                  <Link to="/rc-apply">Apply Registration Certificate (RC)</Link>
+                  <Link to="/rc-apply">
+                    {t("Apply Registration Certificate (RC)")}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/rc-correction">Change of Address in RC</Link>
+                  <Link to="/rc-correction">
+                    {t("Change Of Address in RC")}
+                  </Link>
                 </li>
               </ul>
             )}
           </li>
           <li className="anchor">
-            <Link to="/epfoConsulting">Epfo</Link>
+            <Link to="/epfoConsulting">{t("Epfo")}</Link>
           </li>
           <li className="anchor">
-            <Link to="/orderDetails">Check Order</Link>
+            <Link to="/orderDetails">{t("Check Order")}</Link>
           </li>
-          
+
           <li className="anchor">
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact">{t("Contact")}</Link>
           </li>
           {/* <li className="anchor">
             <Link to="/login"> Admin</Link>
@@ -141,7 +156,7 @@ export default function Navbar() {
             <span></span>
           </div>
           <a href="/" className="title-mobile">
-            DocsZone
+            eCafeIndia
           </a>
         </div>
       </div>

@@ -3,27 +3,30 @@ import "./banner.css";
 import image from "../../assets/image.svg";
 import imagepan from "../../assets/imagepan.jpg";
 import imagepassport from "../../assets/imagepassport.png";
-
+import { useTranslation } from "react-i18next";
 
 function Banner() {
+  const { t } = useTranslation();
   return (
-      <div className="bannercontainer">
+    <div className="bannercontainer">
       <div className="flex-container1">
-       
         <div className="bantext-container">
-          <p className="bantext">The document service platform, built for all your needs</p>
-          <p className="description">Effortlessly apply online for documents, with Zero Login & speedy process checkouts. </p>
-          <button className="checkout">Apply today </button>
+          <p className="bantext">{t("documentServicePlatform")}</p>
+          <p className="description">{t("applyOnline")}</p>
+          <button className="checkout">{t("applyToday")}</button>
         </div>
-       
+
         <div className="collage-container">
           <div className="collage">
             <img src={image} className="collage-image1" alt="natasha" />
-            <img src={imagepassport} className="collage-image2" alt="passport" />
+            <img
+              src={imagepassport}
+              className="collage-image2"
+              alt="passport"
+            />
           </div>
         </div>
-
-    </div>
+      </div>
     </div>
   );
 }
