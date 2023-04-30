@@ -55,3 +55,21 @@ password strong
 
 C
 routing match 
+
+
+frontend
+- contact us_nodemailer
+- email submission 
+
+
+overall
+razorpay_Login_Keys:
+
+>> hindi
+
+mongodb: cluster0
+network acccess
+password acccess
+
+deployment website
+buy hosting

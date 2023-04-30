@@ -24,7 +24,7 @@ i18n
   .init({
     resources,
     lng: "en", //default language
-    debug: true,
+    // debug: true,
     "ns":  "translation",
     keySeparator: false,
     interpolation: {
