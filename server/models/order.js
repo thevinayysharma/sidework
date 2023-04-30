@@ -57,7 +57,6 @@ const formSchema = new mongoose.Schema(
     },
     pan: {
       type: String,
-      required: true,
       trim: true,
     },    
     paymentStatus: {
