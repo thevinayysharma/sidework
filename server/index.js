@@ -17,6 +17,7 @@ import methodOverride from "method-override";
 import crypto from "crypto";
 import Order from "./models/order.js";
 import User from "./models/user.js";
+import ConsultOrder from "./models/consultorder.js";
 import mongodb from  "mongodb";
 import bcrypt from "bcryptjs";
 import { appendTo } from "cheerio/lib/api/manipulation.js";
@@ -136,7 +137,7 @@ app.post("/orders/create", upload.array("files", 3), async (req, res) => {
     phone: req.body.phone,
     amount: req.body.amount,
     work: req.body.work,
-    pan: req.body?.pan,
+    pan: req.body?.pan ?? "",
     files: files,
   });
   order.paymentStatus = "pending";
@@ -294,3 +295,30 @@ app.post("/login", async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 });
+
+
+// ORDER ID GENERATE
+app.post("/consultorders/create", async (req, res) => {
+  console.log(req.body); // log the request body
+  const consultorder = new ConsultOrder({
+    clientId: req.body.clientId,
+    uan: req.body.uan,
+    phone: req.body.phone,
+  })
+
+  consultorder
+  .save()
+  .then((savedOrder) => {
+    console.log(savedOrder);
+    res.status(200).json({
+      message: "Consulting Details submitted successfully",
+      order: savedOrder,
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+    res.status(500).json({
+      message: "Details not submitted to server, try again!"
+    })
+  })
+})
