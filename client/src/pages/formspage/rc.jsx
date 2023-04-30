@@ -40,7 +40,7 @@ export default function Rc() {
   const [dataSubmitted, setdataSubmitted] = useState(false);
 
   const navigate = useNavigate();
-  const refData = { amount: 249, clientId: clientId };
+  const refData = { amount: 699, clientId: clientId };
 
   //yup validation
   const validationSchema = Yup.object().shape({
@@ -101,7 +101,7 @@ export default function Rc() {
       formData.append(key, values[key]);
     }
     formData.append("clientId", clientId);
-    formData.append("amount", 399);
+    formData.append("amount", 699);
     formData.append("work", "Apply new RC");
     console.log(values);
     setSubmitting(false);
@@ -115,7 +115,7 @@ export default function Rc() {
         navigate("/payment", { state: refData });
       }
     } catch (error) {
-      alert(error);
+      alert(error, "could not sumbit details to server");
       console.error(error); // handle error
     }
     // resetForm({ values: "" });

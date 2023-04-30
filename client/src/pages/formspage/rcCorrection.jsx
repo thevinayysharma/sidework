@@ -35,7 +35,7 @@ export default function RcCorrection() {
   const [dataSubmitted, setdataSubmitted] = useState(false);
 
   const navigate = useNavigate();
-  const refData = { amount: 249, clientId: clientId };
+  const refData = { amount: 699, clientId: clientId };
 
   //yup validation
   const validationSchema = Yup.object().shape({
@@ -96,7 +96,7 @@ export default function RcCorrection() {
       formData.append(key, values[key]);
     }
     formData.append("clientId", clientId);
-    formData.append("amount", 399);
+    formData.append("amount", 699);
     formData.append("work", "RC Correction- change of address");
     console.log(values);
     setSubmitting(false);
