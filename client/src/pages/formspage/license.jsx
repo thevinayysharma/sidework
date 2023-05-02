@@ -5,30 +5,10 @@ import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-
-// generate random orderID
-const generateOrderId = () => {
-  let clientId = "";
-  clientId += Math.floor(Math.random() * 900000) + 100000;
-  return clientId;
-};
+import { generateOrderId, initialValues } from "./helpers.js";
 
 // Regular expression for Indian phone number validation
 const phoneRegExp = /^[6-9]\d{9}$/;
-
-//yup intialvalues
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  middleName: "",
-  age: "",
-  comments: "",
-  dob: "",
-  gender: "",
-  email: "",
-  phone: "",
-  files: [],
-};
 
 export default function License() {
   const [clientId, setclientId] = useState(null);

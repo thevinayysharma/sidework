@@ -5,13 +5,7 @@ import epfoImg from "../../assets/epfoimg.jpg";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
-// generate random orderID
-const generateOrderId = () => {
-  let clientId = "";
-  clientId += Math.floor(Math.random() * 900000) + 100000;
-  return clientId;
-};
+import { generateOrderId } from "../formspage/helpers.js";
 
 const EPFOConsulting = () => {
   const [clientId, setclientId] = useState(null);
