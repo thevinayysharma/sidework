@@ -1,19 +1,19 @@
 {
   "language": "भाषा",
-  "Home": "घर",
+  "Home": "होमपेज",
   "Pan Card": "पैन कार्ड",
   "Apply New Pan": "नया पैन लागू करें",
-  "Pan Card Correction": "पैन कार्ड सुधार",
+  "Pan Card Correction": "पैन कार्ड सुधार करें",
   "Passport": "पासपोर्ट",
   "Apply For Fresh Passport": "ताज़ा पासपोर्ट के लिए आवेदन करें",
-  "Passport Renewal": "पासपोर्ट नवीकरण",
+  "Passport Renewal": "पासपोर्ट नवीनीकरण",
   "License": "लाइसेंस",
   "Apply New Driving License": "नया ड्राइविंग लाइसेंस लागू करें",
-  "Issue Of Duplicate Driving License": "डुप्लिकेट ड्राइविंग लाइसेंस जारी करना",
-  "Change Of Address In Driving License": "ड्राइविंग लाइसेंस में पते का बदलाव",
+  "Issue Of Duplicate Driving License": "डुप्लिकेट ड्राइविंग लाइसेंस जारी करें",
+  "Change Of Address In Driving License": "ड्राइविंग लाइसेंस में पते का बदलाव करें",
   "Vehicle RC": "वाहन आरसी",
   "Apply Registration Certificate (RC)": "पंजीकरण प्रमाणपत्र (आरसी) लागू करें",
-  "Change Of Address in RC": "आरसी में पते का बदलाव",
+  "Change Of Address in RC": "आरसी में पते का बदलाव करें",
   "Epfo": "ईपीएफओ",
   "Check Order": "ऑर्डर देखें",
   "Contact": "संपर्क करें",
@@ -39,22 +39,22 @@
   "EPFO Consulting": "ईपीएफओ परामर्श",
   "EPFO services": "ईपीएफओ सेवाएं",
   "Want to know more or have a Question?": "अधिक जानना चाहते हैं या कोई सवाल है?",
-  
-    "1484, babu park, kotla Mubarakpur, New Delhi 110003": "1484, बाबू पार्क, कोटला मुबारकपुर, नई दिल्ली 110003",
-    "Call us": "कॉल करें",
-    "Mail us": "मेल करें",
-    "eCafeIndia aids in applying to various government documents in an easy and conveninent way": "ईकैफे इंडिया सरकारी दस्तावेजों के लिए आसान और सुविधाजनक तरीके से आवेदन करने में मदद करता है",
-    "Follow us": "फ़ॉलो करें",
-    "Contact Us": "हमसे संपर्क करें",
-    "About Us": "हमारे बारे में",
-    "Blog": "ब्लॉग",
-    "Privacy Policy": "गोपनीयता नीति",
-    "T&c": "नियम और शर्तें",
-    "Admin": "व्यवस्थापक",
-    "Have a Query ?": "कोई प्रश्न है?",
-    "Email us right await and let us know how we can help you. kindly fill the submission form below.": "हमें अपने प्रश्न ईमेल करें और बताएं कि हम आपकी मदद कैसे कर सकते हैं। कृपया नीचे दिए गए प्रस्तुति फ़ॉर्म को भरें।"
-  }
-  
-  
- 
-  
+
+  "1484, babu park, kotla Mubarakpur, New Delhi 110003": "1484, बाबू पार्क, कोटला मुबारकपुर, नई दिल्ली 110003",
+  "Call us": "कॉल करें",
+  "Mail us": "मेल करें",
+  "eCafeIndia aids in applying to various government documents in an easy and conveninent way": "ईकैफे इंडिया सरकारी दस्तावेजों के लिए आसान और सुविधाजनक तरीके से आवेदन करने में मदद करता है",
+  "Follow us": "फ़ॉलो करें",
+  "Contact Us": "हमसे संपर्क करें",
+  "About Us": "हमारे बारे में",
+  "Blog": "ब्लॉग",
+  "Privacy Policy": "गोपनीयता नीति",
+  "T&c": "नियम और शर्तें",
+  "Admin": "व्यवस्थापक",
+  "Have a Query ?": "कोई प्रश्न है?",
+  "Email us right await and let us know how we can help you. kindly fill the submission form below.": "हमें अपने प्रश्न ईमेल करें और बताएं कि हम आपकी मदद कैसे कर सकते हैं। कृपया नीचे दिए गए प्रस्तुति फ़ॉर्म को भरें।",
+  "Order Details": "ऑर्डर विवरण",
+  "Enter your Client Id": "अपना क्लाइंट आईडी दर्ज करें",
+  "Order doesn't exist, check ID again": "ऑर्डर मौजूद नहीं है, आईडी फिर से जांचें।",
+  "Find your form and payment details": "अपना फॉर्म और भुगतान विवरण प्राप्त करें।"
+}

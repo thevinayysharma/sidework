@@ -59,14 +59,12 @@ function App() {
         <BrowserRouter>
           <div className="App">
             <div className="language-dropdown">
-              <select
-                id="language-select"
-                value={locale}
-                onChange={(e) => changeLocale(e.target.value)}
-              >
-                <option value="en">English</option>
-                <option value="hn">Hindi</option>
-              </select>
+              <nav>
+                <ul>
+                  <li onClick={() => changeLocale("en")}>A</li>
+                  <li onClick={() => changeLocale("hn")}>हिंदी</li>
+                </ul>
+              </nav>
             </div>
             <Navbar />
             <Routes>

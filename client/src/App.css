@@ -9,3 +9,35 @@
     box-sizing: border-box;
   }
 
+  nav {
+    background-color: #124dac;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    margin-right: 50px;
+    padding: 0;
+  }
+  
+  nav li {
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  nav li:hover{
+    background: #2a2f33;
+  }
+  
+  @media (max-width: 600px) {
+  
+    nav li {
+      width: 100%;
+    }
+  }
+  

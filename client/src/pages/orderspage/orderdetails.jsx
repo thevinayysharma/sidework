@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./orderdetails.css";
 import nofileimg from "../../assets/notfound.png";
+import { useTranslation } from "react-i18next";
 
 function OrderDetails() {
   const [clientId, setclientId] = useState("");
@@ -9,6 +10,7 @@ function OrderDetails() {
   const [userExists, setUserExists] = useState(false);
   const [loading, setLoading] = useState(false);
   const [fileExist, setFileExist] = useState(true);
+  const { t } = useTranslation();
 
   const handleSearch = async () => {
     if (clientId === "") {
@@ -35,9 +37,9 @@ function OrderDetails() {
 
   return (
     <div className="ordercheck-container">
-      <h1 className="ordercheck-heading">Order Details</h1>
+      <h1 className="ordercheck-heading">{t("Order Details")}</h1>
       <div className="ordercheck-input">
-        <label> Enter your Client Id</label>
+        <label> {t("Enter your Client Id")}</label>
         <input
           type="text"
           value={clientId}
@@ -53,7 +55,7 @@ function OrderDetails() {
       </div>
       {!fileExist && (
         <div>
-          <p className="notfoundmsg" >Order doesn't exist, check ID again.</p>
+          <p className="notfoundmsg" >{t("Order doesn't exist, check ID again")}</p>
         <img
           src={nofileimg}
           alt="File Not Found"
@@ -83,7 +85,7 @@ function OrderDetails() {
           {/* {!fileExist && <img src={nofileimg} alt="File not found" />} */}
           {fileExist && (
             <p className="ordercheck-message">
-              Find your form and payment details.
+             {t("Find your form and payment details")} 
             </p>
           )}
         </>
