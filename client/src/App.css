@@ -1,43 +1,58 @@
 @import url("https://fonts.googleapis.com/css?family=Kanit:200,400,500&display=swap");
-
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap'); */
 * {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
-  nav {
-    background-color: #124dac;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    margin-right: 50px;
-    padding: 0;
-  }
-  
+nav {
+  background-color: #65cbfa;
+  opacity: 0.6;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  margin-right: 50px;
+  padding: 0;
+}
+
+nav li {
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+nav li :first-child {
+  color: white !important;
+}
+
+nav li:hover {
+  background: #388bd8;
+}
+
+
+nav a {
+  color: white;
+}
+
+.fa-home {
+  padding-right: 8px;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+
   nav li {
-    color: white;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 18px;
-    text-align: center;
+    width: 100%;
   }
-
-  nav li:hover{
-    background: #2a2f33;
-  }
-  
-  @media (max-width: 600px) {
-  
-    nav li {
-      width: 100%;
-    }
-  }
-  
+}

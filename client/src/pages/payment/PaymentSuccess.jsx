@@ -34,6 +34,10 @@ const clientId = params.get("clientId");
     fontWeight: "500",
   }
 
+  const handlePrint = () => {
+    window.print();
+  }
+  
   return (
     <div style={successPageStyle}>
       <h2 style={titleStyle}>Payment <span style={{color: "green"}}>Successful</span> <i class="fa-sharp fa-solid fa-thumbs-up" style={{color: "#247556"}}></i></h2>
@@ -44,8 +48,8 @@ const clientId = params.get("clientId");
          <li style={linkStyle}>
           <Link to="/orderDetails"><span style={{color: "#0e7490"}}>Check OrderDetails</span></Link>
         </li>
-
       </p>
+      <button onClick={handlePrint}>Print Details</button>
     </div>
   );
 };

@@ -5,7 +5,7 @@
   padding-left:80px;
   background-image: url(../../assets/canvasbg.png);
   width: 100%;
- height: 80vh;
+ height: 75vh;
  top: 0;
  z-index: -1;
  background-repeat: no-repeat;
@@ -65,12 +65,12 @@ button {
 }
 
 .flex-container1 .collage-container .collage .collage-image1 {
-  top:40%;
+  top:24%;
   right:230px;
   bottom: 0px;
   position: absolute;
-  height: 90%;
-  width: 65%;
+  height: 80%;
+  width: 55%;
   z-index: 2;
   -webkit-clip-path: polygon(0px 30px, 30px 0px, 100% 0%, 100% 100%, 0% 100%);
           clip-path: polygon(0px 30px, 30px 0px, 100% 0%, 100% 100%, 0% 100%);
@@ -80,8 +80,8 @@ button {
 .flex-container1 .collage-container .collage .collage-image2 {
   position: absolute;
   right: 0px;
-  top: 29%;
-  height: 75%;
+  top: 20%;
+  height: 65%;
   width: 65%;
   -webkit-clip-path: polygon(0 0, calc(100% - 30px) 0%, 100% 30px, 100% 100%, 0 100%);
           clip-path: polygon(0 0, calc(100% - 30px) 0%, 100% 30px, 100% 100%, 0 100%);

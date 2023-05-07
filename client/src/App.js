@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState, useEffect, Suspense } from "react";
 import Protected from "./Protected";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import LocaleContext from "./LocaleContext";
 import HomePage from "./pages/homepage/homepage";
 import Admin from "./pages/admin/admin";
@@ -61,7 +61,8 @@ function App() {
             <div className="language-dropdown">
               <nav>
                 <ul>
-                  <li onClick={() => changeLocale("en")}>A</li>
+                  <li><i className="fa fa-home fa-text-color"></i><Link to="/">{t("Home")}</Link></li>
+                  <li onClick={() => changeLocale("en")}>English</li>
                   <li onClick={() => changeLocale("hn")}>हिंदी</li>
                 </ul>
               </nav>

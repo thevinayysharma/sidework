@@ -41,7 +41,7 @@ export default function Navbar() {
             <img src={docsimg} alt="Logo" />'
           </div>
           <li className="anchor">
-            <Link to="/">{t("Home")}</Link>
+            <Link to="/about-us">{t("About Us")}</Link>
           </li>
 
           <li
