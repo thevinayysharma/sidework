@@ -15,6 +15,7 @@ import ContactUs from "./pages/contactpage/contact";
 import EPFOConsulting from "./pages/epfo/epfo";
 import TermsandConditions from "./pages/t&c";
 // pages
+import AboutUs from "./pages/about/about";
 import Pan from "./pages/formspage/pan";
 import PanCorrection from "./pages/formspage/panCorrection";
 import RC from "./pages/formspage/rc";
@@ -71,6 +72,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
 
+              <Route path="/about-us" element={<AboutUs />} />
               <Route path="/rc-apply" element={<RC />} />
               <Route path="/rc-correction" element={<RCCorrrection />} />
 
