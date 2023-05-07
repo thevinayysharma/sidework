@@ -28,6 +28,7 @@ import PassportRenewal from "./pages/formspage/passportRenewal";
 import Loading from "./components/Loading";
 import { useTranslation } from "react-i18next";
 import i18n from "./i18n";
+import PrivacyPolicy from "./pages/privacy/privacy";
 
 const hideFooter = window.location.pathname === "/payment";
 
@@ -92,6 +93,7 @@ function App() {
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/epfoConsulting" element={<EPFOConsulting />} />
               <Route path="/t&c" element={<TermsandConditions />} />
+              <Route path="/pp" element={<PrivacyPolicy />} />
               <Route
                 path="/login"
                 element={<Login setIsLoggedIn={setIsLoggedIn} />}

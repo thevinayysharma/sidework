@@ -49,7 +49,7 @@ const clientId = params.get("clientId");
           <Link to="/orderDetails"><span style={{color: "#0e7490"}}>Check OrderDetails</span></Link>
         </li>
       </p>
-      <button onClick={handlePrint}>Print Details</button>
+      {/* <div style={{backgroundColor: "grey", padding:"5px", width: "40%", cursor:"pointer"}}onClick={handlePrint}>Print Receipt</div> */}
     </div>
   );
 };

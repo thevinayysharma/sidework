@@ -99,13 +99,13 @@ export default function Footer() {
                   <Link to="/contact">{t("Contact Us")}</Link>
                   </li>
                   <li>
-                    <a href="#">{t("About Us")}</a>
+                    <a href="/about-us">{t("About Us")}</a>
                   </li>
                   <li>
                     <a href="#">{t("Blog")}</a>
                   </li>
                   <li>
-                    <a href="#">{t("Privacy Policy")}</a>
+                    <a href="/pp">{t("Privacy Policy")}</a>
                   </li>
                   <li>
                   <Link to="/t&c">{t("T&c")}</Link>
